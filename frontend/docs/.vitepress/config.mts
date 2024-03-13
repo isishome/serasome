@@ -106,5 +106,5 @@ export default defineConfig({
       copyright: 'Copyright © 2024-present SeraSome'
     }
   },
-  outDir: './../front'
+  outDir: './../../dist/frontend'
 })

@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as r}from"./chunks/framework.D5kTTP_a.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"programming/quasar/index.md","filePath":"programming/quasar/index.md"}'),t={name:"programming/quasar/index.md"};function n(o,s,i,c,m,d){return r(),a("div")}const f=e(t,[["render",n]]);export{_ as __pageData,f as default};
