@@ -14,8 +14,8 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '홈', link: '/' },
-          { text: '프로그래밍', link: '/programming/vue/intro/' },
-          { text: 'IT 기기', link: '/it/y700-2th/intro/' }
+          { text: '프로그래밍', link: '/programming/vue/intro' },
+          { text: 'IT 기기', link: '/it/y700/intro' }
         ],
         logo: '/images/logo.svg',
         notFound: {
@@ -30,7 +30,7 @@ export default defineConfig({
               text: 'Vue.js',
               collapsed: false,
               items: [
-                { text: '준비중', link: '/programming/vue/intro/' },
+                { text: '준비중', link: '/programming/vue/intro' },
               ]
             },
             // {
@@ -60,9 +60,9 @@ export default defineConfig({
               text: '레노버 리전 Y700 2세대',
               collapsed: false,
               items: [
-                { text: '소개', link: '/it/y700-2th/intro/' },
-                { text: '구성품 및 악세서리', link: '/it/y700-2th/components/' },
-                { text: '글로벌 롬 업데이트', link: '/it/y700-2th/global-rom/' }
+                { text: '소개', link: '/it/y700/intro' },
+                { text: '구성품 및 악세서리', link: '/it/y700/components' },
+                { text: '글로벌 롬 업데이트', link: '/it/y700/global-rom' }
               ]
             }
           ]
@@ -106,5 +106,6 @@ export default defineConfig({
       copyright: 'Copyright © 2024-present SeraSome'
     }
   },
+  cleanUrls: true,
   outDir: './../dist'
 })

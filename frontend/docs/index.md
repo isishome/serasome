@@ -3,23 +3,23 @@
 layout: home
 
 hero:
-  name: "세라의 특별한..."
-  text: "취미와 관심사, 그리고\n그와 관련된 모든 것들"
-  tagline: 프로그래밍 & 그밖에 관심 있는 모든 것들을 모아놓은 곳
+  name: "Sera's Special.."
+  text: "Something"
+  tagline: 프로그래밍 & IT & 그밖에 관심 있는 모든 것
   image:
     src: /images/logo_shadow.svg
     alt: Sera's Something
   actions:
     - theme: brand
       text: 나는 누구?
-      link: /profile/
+      link: /profile
       disable: true
     - theme: alt
       text: 프로그래밍
-      link: /programming/vue/intro/
+      link: /programming/vue/intro
     - theme: alt
       text: IT 기기
-      link: /it/y700-2th/intro/
+      link: /it/y700/intro
 
 features:
   - icon: 💻
