@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as n}from"./chunks/framework.D5kTTP_a.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"programming/pinia/index.md","filePath":"programming/pinia/index.md"}'),t={name:"programming/pinia/index.md"};function r(i,o,p,s,c,m){return n(),a("div")}const f=e(t,[["render",r]]);export{_ as __pageData,f as default};

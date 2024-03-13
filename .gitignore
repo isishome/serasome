@@ -1,2 +1,5 @@
 .vscode
 node_modules
+
+/serasome/front
+/serasome/docs/.vitepress/cache

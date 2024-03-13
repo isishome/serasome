@@ -105,5 +105,6 @@ export default defineConfig({
       message: 'Made with VitePress.',
       copyright: 'Copyright © 2024-present SeraSome'
     }
-  }
+  },
+  outDir: './../front'
 })
