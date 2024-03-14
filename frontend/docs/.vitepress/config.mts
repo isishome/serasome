@@ -61,8 +61,8 @@ export default defineConfig({
               collapsed: false,
               items: [
                 { text: '소개', link: '/it/y700/intro' },
-                { text: '구성품 및 악세서리', link: '/it/y700/components' },
-                { text: '글로벌 롬 업데이트', link: '/it/y700/global-rom' }
+                // { text: '구성품 및 악세서리', link: '/it/y700/components' },
+                // { text: '글로벌 롬 업데이트', link: '/it/y700/global-rom' }
               ]
             }
           ]
