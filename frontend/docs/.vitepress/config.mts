@@ -109,5 +109,10 @@ export default defineConfig({
     }
   },
   cleanUrls: true,
+  markdown: {
+    image: {
+      lazyLoading: true
+    }
+  },
   outDir: './../dist'
 })
