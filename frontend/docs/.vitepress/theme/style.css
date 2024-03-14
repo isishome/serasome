@@ -123,7 +123,16 @@
 }
 
 .vp-doc img {
-  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.vp-doc tr:has(.image),
+.vp-doc th:has(.image),
+.vp-doc tr:has(.caption),
+.vp-doc td:has(.caption) {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0;
 }
 
 @media (min-width: 640px) {
