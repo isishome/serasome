@@ -1,14 +1,29 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, HeadConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  transformPageData: (pageData) => {
+    const canonicalUrl = `https://serasome.com/${pageData.relativePath}`
+      .replace(/index\.md$/, '').replace(/\.(md|html)$/, '')
+
+    pageData.frontmatter.head ??= []
+
+    pageData.frontmatter.head.push(['meta', { property: 'og:title', content: pageData.title }])
+    pageData.frontmatter.head.push(['meta', { property: 'og:description', content: pageData.description }])
+    pageData.frontmatter.head.push(['meta', { property: 'og:image', content: 'https://serasome.com/images/og.jpg' }])
+    pageData.frontmatter.head.push(['meta', { property: 'og:url', content: canonicalUrl }])
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: canonicalUrl }
+    ])
+  },
   sitemap: {
     hostname: 'https://serasome.com'
   },
   locales: {
     root: {
       title: 'Sera\'s Something',
-      description: '세라의 특별한... 모든 것들',
+      description: '프로그래밍 & IT & 그밖에 관심 있는 모든 것',
       label: '한국어',
       lang: 'ko',
       themeConfig: {
