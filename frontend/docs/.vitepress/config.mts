@@ -73,7 +73,6 @@ export default defineConfig({
           '/it/': [
             {
               text: '레노버 리전 Y700 2세대',
-              collapsed: false,
               items: [
                 { text: '소개', link: '/it/y700/intro' },
                 // { text: '구성품 및 악세서리', link: '/it/y700/components' },
