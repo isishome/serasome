@@ -5,7 +5,7 @@ description: 레노버 리전 Y700 2세대 전용 펜(AP500U) 제품의 간단�
 # 레노버 리전 Y700 2세대 전용 펜(AP500U) 리뷰
 
 ::: info 전용 펜
-레노버 AP500U  제품
+레노버 AP500U 제품
 :::
 
 ## 전용 펜
@@ -93,22 +93,23 @@ Nebo에는 기본적으로 3가지 문서 모드를 지원합니다.
 |:--:|
 | *펜슬로 글쓰기*{:class='caption'} |
 
+<br />
+Nebo 앱을 이용해 간단히 글쓰기를 해보았습니다.
 <p>
     <video width="800" playbackRate="2" muted autoplay loop playsinline>
     <source src="./images/pen/nebo_video.mp4" type="video/mp4" >
     </video>
 </p>
-Nebo 앱을 이용해 간단히 글쓰기를 해보았습니다.
+<br />
 
-<br />
-<br />
+문서 모드 사용 시 필기한 내용을 변환해서 보여주며 실제로 ***텍스트***로 변환도 가능합니다.
 <p>
     <video width="800" playbackRate="2" muted autoplay loop playsinline>
     <source src="./images/pen/nebo_video2.mp4" type="video/mp4" >
     </video>
 </p>
 
-문서 모드 사용 시 필기한 내용을 변환해서 보여주며 실제로 ***텍스트*** 로 변환도 가능합니다.
+
 
 ## 짤막 리뷰
 * 장점
