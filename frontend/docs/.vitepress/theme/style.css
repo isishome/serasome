@@ -134,7 +134,7 @@
 
 .vp-doc img {
   border-radius: 24px;
-
+  border: solid 1px #00000022;
 }
 
 .vp-doc tr:has(.image),
@@ -144,6 +144,11 @@
   background-color: transparent !important;
   border: none !important;
   padding: 0;
+}
+
+.vp-doc video {
+  border: solid 1px #00000022;
+  border-radius: 24px;
 }
 
 @media (min-width: 640px) {

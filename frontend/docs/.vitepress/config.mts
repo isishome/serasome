@@ -76,7 +76,8 @@ export default defineConfig({
               items: [
                 { text: '소개', link: '/it/y700/intro' },
                 { text: '구성품 및 리뷰', link: '/it/y700/components' },
-                // { text: '글로벌 롬 업데이트', link: '/it/y700/global-rom' }
+                { text: '전용 펜(AP500U) 리뷰', link: '/it/y700/pen' },
+                //{ text: '글로벌 롬 업데이트', link: '/it/y700/global-rom' }
               ]
             }
           ]
