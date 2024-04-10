@@ -137,6 +137,14 @@
   border: solid 1px #00000022;
 }
 
+.vp-doc table:has(.image) {
+  margin: 0 0 40px 0;
+}
+
+.vp-doc li+li {
+  margin-top: 2px;
+}
+
 .vp-doc tr:has(.image),
 .vp-doc th:has(.image),
 .vp-doc tr:has(.caption),
