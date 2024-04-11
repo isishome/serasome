@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { loadEnv } from 'vite'
 
 declare global {
   interface Window {
@@ -7,10 +8,10 @@ declare global {
   }
 }
 
-const dataAdtest = false
+const dataAdtest = import.meta.env.DEV
 
 const render = () => {
-  (adsbygoogle = window.adsbygoogle || []).push({})
+  (window.adsbygoogle || []).push({})
 }
 
 onMounted(() => {
