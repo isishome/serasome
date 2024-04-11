@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-const dataAdtest = true
+const dataAdtest = false
 
 const render = () => {
   (adsbygoogle = window.adsbygoogle || []).push({})
