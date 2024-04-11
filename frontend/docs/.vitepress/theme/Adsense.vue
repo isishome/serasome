@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { loadEnv } from 'vite'
 
 declare global {
   interface Window {
