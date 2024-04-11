@@ -24,7 +24,7 @@ onMounted(() => {
 <template>
   <div class="wrap">
     <div class="ads-wrap">
-      <ins class="adsbygoogle" style="display:inline-block;width:200px;height:200px;"
+      <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px;"
         data-ad-client="ca-pub-5110777286519562" data-ad-slot="7901796235"
         :data-adtest="dataAdtest ? 'on' : null"></ins>
     </div>
@@ -40,9 +40,9 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 32px;
   border-radius: 12px;
-  min-height: 224px;
+  min-height: 600px;
   text-align: center;
   line-height: 18px;
   font-size: 12px;
