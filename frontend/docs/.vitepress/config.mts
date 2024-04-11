@@ -76,9 +76,9 @@ export default defineConfig({
               items: [
                 { text: '소개', link: '/it/y700/intro' },
                 { text: '구성품 및 리뷰', link: '/it/y700/components' },
+                { text: '글로벌 롬 설치', link: '/it/y700/global-rom' },
                 { text: '전용 펜(AP500U) 리뷰', link: '/it/y700/pen' },
-                { text: '전용 액세서리 리뷰', link: '/it/y700/accessories' },
-                { text: '글로벌 롬 설치', link: '/it/y700/global-rom' }
+                { text: '전용 액세서리 리뷰', link: '/it/y700/accessories' }
               ]
             }
           ]
@@ -116,7 +116,8 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png' }],
     ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }],
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-CYSQREKHK7' }],
-    ['script', {}, "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"]
+    ['script', {}, "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"],
+    ["script", { async: '', src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562", crossorigin: 'anonymous' }]
   ],
   themeConfig: {
     footer: {

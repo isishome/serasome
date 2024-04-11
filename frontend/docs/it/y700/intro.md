@@ -4,7 +4,7 @@ description: 레노버 리전 Y700 2023은 8.8인치 IPS LCD 스크린을 탑재
 ---
 # 레노버 리전 Y700 2세대 소개
 
-|![레노버 리전 Y700 2세대](./images/intro/title.webp){:class='image'}|
+|![레노버 리전 Y700 2세대](./images/intro/title.webp){:class='no-border'}|
 |:--:|
 | *출처 : 레노버 공식 홈페이지*{:class='caption'} |
 

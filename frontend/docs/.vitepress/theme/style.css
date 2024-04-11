@@ -134,6 +134,9 @@
 
 .vp-doc img {
   border-radius: 24px;
+}
+
+.vp-doc img:not(.no-border) {
   border: solid 1px #00000022;
 }
 
@@ -145,6 +148,8 @@
   margin-top: 2px;
 }
 
+.vp-doc tr:has(.no-border),
+.vp-doc th:has(.no-border),
 .vp-doc tr:has(.image),
 .vp-doc th:has(.image),
 .vp-doc tr:has(.caption),
