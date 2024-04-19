@@ -159,9 +159,22 @@ AULA F87 Pro 키보드에는
 | *스위치가 교체된 상태*{:class='caption'} |
 
 ## 타건 음
+::: info 키 입력 순서 
+1. k * 3
+1. b * 3
+1. d * 3
+1. Enter * 3
+1. Shift * 3
+1. Space * 3
+1. 무작위
+:::
+
+<br />
+
 회목축(그레이 축 V4:Grey V4)
 <p>
   <audio controls preload="none">
+    <source src="./audio/grey.mp3" type="audio/mpeg" >
     <source src="./audio/grey.ogg" type="audio/ogg" >
   </audio>
 </p>
@@ -170,6 +183,7 @@ AULA F87 Pro 키보드에는
 황축(옐로우 축 V3:Yellow V3)
 <p>
   <audio controls preload="none">
+    <source src="./audio/yellow.mp3" type="audio/mpeg" >
     <source src="./audio/yellow.ogg" type="audio/ogg" >
   </audio>
 </p>
