@@ -25,7 +25,7 @@ description: AULA F87 Pro 제품의 간단한 개봉 및 리뷰입니다.
 | *패키지 개봉*{:class='caption'} |
 
 ## 구성품
-내용물은 키보드(본품), 투명 루프, USB 케이블, 키 캡 리무버, 샘플 키 축 2개, 매뉴얼 및 보증서\
+내용물은 키보드(본품), 투명 루프, USB 케이블, 키 캡&스위치 리무버, 샘플 스위치 2개, 매뉴얼 및 보증서\
 로 알차게 구성되어 있습니다.\
 **이 가격대 키보드에서 절대 볼 수 없는 알찬 구성에 놀랐습니다.**
 |![AULA F87 Pro 패키지 구성품](./images/components/f87_pro_03.webp){:class='image'}|
@@ -135,11 +135,34 @@ AULA F87 Pro 키보드에는
   </video>
 </p>
 
+## 스위치 교체하기 (핫스왑)
+구성품에 포함된 키 캡&스위치 리무버와 샘플 스위치를 이용해 핫스왑을 해보도록 하겠습니다.
+
+리무버의 와이어 부분을 제거할 키 캡에 걸어 위로 살짝만 당겨주면 키 캡이 쉽게 제거됩니다.
+|![AULA F87 Pro 키보드 키 캡 제거](./images/components/f87_pro_11.webp){:class='image'}|
+|:--:|
+| *키 캡 제거*{:class='caption'} |
+
+리무버의 집게 부분을 제거할 스위치 접촉 바닥면에 닿도록 하여 찝어 당겨주면 스위치가 제거됩니다.
+|![AULA F87 Pro 키보드 스위치 제거](./images/components/f87_pro_12.webp){:class='image'}|
+|:--:|
+| *스위치 제거*{:class='caption'} |
+
+샘플 스위치를 핀 모양에 맞춘 상태로 올려두고 위에서 키보드 방향으로 가볍게 눌러줍니다.
+|![AULA F87 Pro 키보드 스위치 제거](./images/components/f87_pro_13.webp){:class='image'}|
+|:--:|
+| *스위치가 제거된 상태*{:class='caption'} |
+
+스위치 교체가 완료되었습니다.
+|![AULA F87 Pro 키보드 스위치 교체](./images/components/f87_pro_14.webp){:class='image'}|
+|:--:|
+| *스위치가 교체된 상태*{:class='caption'} |
+
 ## 타건 음
 회목축(그레이 축 V4:Grey V4)
 <p>
   <audio controls preload="none">
-    <source src="./audio/grey.m4a" type="audio/mp3" >
+    <source src="./audio/grey.ogg" type="audio/ogg" >
   </audio>
 </p>
 <br />
@@ -147,7 +170,7 @@ AULA F87 Pro 키보드에는
 황축(옐로우 축 V3:Yellow V3)
 <p>
   <audio controls preload="none">
-    <source src="./audio/yellow.m4a" type="audio/mp3" >
+    <source src="./audio/yellow.ogg" type="audio/ogg" >
   </audio>
 </p>
 
@@ -188,7 +211,7 @@ AULA F87 Pro 키보드에는
 * [펌웨어 파일](https://funkeys.co.kr/bbs/download.php?bo_table=download&wr_id=287&no=0&sfl=wr_subject&stx=f87&sop=and)
 
 ::: danger 펌웨어 설치 경고
-* 현재 사용하시는 제품에 이상이 없다면 <u>**펌웨어 업데이트를 진행하지 마세요.**</u>
+현재 사용하시는 제품에 이상이 없다면 <u>**펌웨어 업데이트를 진행하지 마세요.**</u>
 :::
 
 ## 짤막 리뷰
@@ -205,4 +228,4 @@ AULA F87 Pro 키보드에는
     1. 낮은 키압
 
 ## 총평
-* 기계식 키보드 입문자도, 입문자가 아니라도 꼭 한번 써보시는 걸 추천드립니다.
+* 기계식 키보드에 입문하는 분들께 강력 추천해 드리며, 꼭 입문자가 아니더라도 충분히 만족할 만한 좋은 제품입니다.
