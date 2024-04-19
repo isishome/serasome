@@ -90,6 +90,7 @@ export default defineConfig({
           '/it/': [
             {
               text: '레노버 리전 Y700 2세대',
+              collapsed: true,
               items: [
                 { text: '소개', link: '/it/y700/intro' },
                 { text: '구성품 및 리뷰', link: '/it/y700/components' },
@@ -98,6 +99,14 @@ export default defineConfig({
                 { text: '다양한 기능', link: '/it/y700/features' },
                 { text: '전용 펜(AP500U) 리뷰', link: '/it/y700/pen' },
                 { text: '전용 액세서리 리뷰', link: '/it/y700/accessories' }
+              ]
+            },
+            {
+              text: 'AULA F87 Pro',
+              collapsed: true,
+              items: [
+                { text: '소개', link: '/it/f87pro/intro' },
+                { text: '구성품 및 리뷰', link: '/it/f87pro/components' }
               ]
             }
           ]

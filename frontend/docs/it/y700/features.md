@@ -119,7 +119,7 @@ Quick Share 설정 화면이 표시됩니다. **계속**을 선택합니다.
 | *레노버 리전 Y700 2세대 Quick Share*{:class='caption'} |
 
 Quick Share 사용 준비가 완료되었습니다.\
-**파일** 또는 **폴더**를 직접 선택하거나 **드래그 앤 드랍**을 이용해 송/수신이 가능합니다.\
+**파일** 또는 **폴더**를 직접 선택하거나 **드래그 앤 드랍**을 이용해 송신이 가능합니다.\
 PC에 있는 이미지를 태블릿으로 보내보도록 하겠습니다.
 |![레노버 리전 Y700 2세대 Quick Share](./images/features/qs_step_13.webp){:class='image'}|
 |:--:|
@@ -131,7 +131,7 @@ PC에 있는 이미지를 태블릿으로 보내보도록 하겠습니다.
 |:--:|
 | *레노버 리전 Y700 2세대 Quick Share*{:class='caption'} |
 
-태블릿에 Quick Share 통한 파일 **수신 완료** 알림이 표시됩니다.
+태블릿에 Quick Share를 통한 파일 **수신 완료** 알림이 표시됩니다.
 |![레노버 리전 Y700 2세대 Quick Share](./images/features/qs_step_15.webp){:class='image'}|
 |:--:|
 | *레노버 리전 Y700 2세대 Quick Share*{:class='caption'} |
