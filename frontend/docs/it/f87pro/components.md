@@ -210,18 +210,18 @@ AULA F87 Pro 키보드에는
 
 ## AULA(펀키스) 지원
 매뉴얼
-* [퀵 가이드](./support/AULA%20F87Pro%20퀵%20가이드.pdf)
-* [설명서](./support/F87Pro_설명서.pdf)
+* [퀵 가이드](/files/AULA_F87Pro_QuickGuide.pdf)
+* [설명서](/files/AULA_F87Pro_Manual.pdf)
 
 <br />
 
 소프트웨어
-* [전용 소프트웨어](./support/AULA%20F87%20PRO%20Setup%20v2.1%2020240227(한글지원).exe)
+* [전용 소프트웨어](/files/AULA_F87Pro_Setup.zip)
 
 <br />
 
 펌웨어
-* [펌웨어 파일](./support/Aula%20F87PRO용%20펌웨어.exe)
+* [펌웨어 파일](/files/AULA_F87Pro_Firmware.zip)
 
 ::: danger 펌웨어 설치 경고
 현재 사용하는 제품에 특별히 문제가 없다면 <u>**펌웨어 업데이트를 할 필요가 없습니다.**</u>
