@@ -46,8 +46,8 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '홈', link: '/' },
-          { text: '프로그래밍', link: '/programming/vue/intro' },
-          { text: 'IT 기기', link: '/it/y700/intro' }
+          { text: '프로그래밍', link: '/programming/docker/intro' },
+          { text: 'IT 기기', link: '/it/y700/global-rom' }
         ],
         logo: '/images/logo.svg',
         notFound: {
