@@ -59,6 +59,14 @@ export default defineConfig({
         sidebar: {
           '/programming/': [
             {
+              text: 'Docker',
+              collapsed: true,
+              items: [
+                { text: 'Docker란 무엇인가?', link: '/programming/docker/intro' },
+                { text: 'Docker 시작하기', link: '/programming/docker/start' }
+              ]
+            },
+            {
               text: 'Vue.js',
               collapsed: false,
               items: [
