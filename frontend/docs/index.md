@@ -16,10 +16,10 @@ hero:
       disable: true
     - theme: alt
       text: 프로그래밍
-      link: /programming/vue/intro
+      link: /programming/docker/intro
     - theme: alt
       text: IT 기기
-      link: /it/y700/intro
+      link: /it/y700/global-rom
 
 features:
   - icon: 💻
