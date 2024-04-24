@@ -3,15 +3,15 @@ title: Docker 시작하기
 decscription: Docker Desktop을 설치해 봅시다.
 ---
 # Docker 시작하기
-::: info Docker를 시작하기 앞서
-윈도우 환경에서 Docker Desktop을 설치하고 윈도우 터미널을 이용해 Docker를 다룰 예정입니다.
+::: info Docker를 시작하기에 앞서
+윈도우 환경에서 Docker Desktop을 설치하고 윈도우 터미널을 이용해 Docker를 다룰 예정입니다.\
 Docker Desktop은 아래와 같은 환경에서 설치가 가능합니다.
 * Mac
 * Windows
 * Linux (Ubuntu, Devian, Pedora, Arch)
 :::
 ::: warning 목표
-저는 현재 개인 프로젝트로 서비스 중인 [디아블로® IV | 트레이더스](https://d4.tradurs.com/) 사이트를 Github와 Jenkins를 이용해 Docker 컨테이너로 자동 배포하는 것을 목표로 하여 진행할 예정입니다.
+현재 개인 프로젝트로 서비스 중인 [디아블로® IV | 트레이더스](https://d4.tradurs.com/) 사이트를 Github와 Jenkins를 이용해 Docker 컨테이너로 자동 배포하는 것
 :::
 
 ## WSL 2 설치
