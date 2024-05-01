@@ -1,6 +1,6 @@
 ---
 title: Docker란 무엇인가?
-decscription: Docker는 독립적인 프로세스를 컨테이너 방식으로 실행하고 관리할 수 잇도록 도와주는 도구 입니다.
+decscription: Docker는 독립적인 프로세스를 컨테이너 방식으로 실행하고 관리할 수 있도록 도와주는 도구 입니다.
 ---
 # Docker란 무엇인가?
 <br />
