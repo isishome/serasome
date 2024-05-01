@@ -82,7 +82,7 @@ PowerShell을 열고 이 명령을 실행하여 새 Linux 배포를 설치할 �
 
     * [Ubuntu 18.04 LTS](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q)
     * [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
-    * [Ubuntu 22.04 LTS](https://www.microsoft.com/store/apps/9PN20MSR04DW) :heavy_check_mark: AWS 라이트세일 버전에 맞추기 위해 22.04 버전을 설차했습니다.
+    * [Ubuntu 22.04 LTS](https://www.microsoft.com/store/apps/9PN20MSR04DW) :heavy_check_mark: AWS 라이트세일 버전에 맞추기 위해 22.04 버전을 설치했습니다.
     * [openSUSE Leap 15.1](https://www.microsoft.com/store/apps/9NJFZK00FGKV)
     * [SUSE Linux Enterprise Server 12 SP5](https://www.microsoft.com/store/apps/9MZ3D1TRP8T1)
     * [SUSE Linux Enterprise Server 15 SP1](https://www.microsoft.com/store/apps/9PN498VPMF3Z)
