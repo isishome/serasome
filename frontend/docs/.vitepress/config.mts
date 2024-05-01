@@ -11,11 +11,11 @@ const heads: HeadConfig[] = [
   ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }]
 ]
 
-if (prod) {
-  heads.push(['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-CYSQREKHK7' }],
-    ['script', {}, "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"],
-    ["script", { async: '', src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562", crossorigin: 'anonymous' }])
-}
+// if (prod) {
+//   heads.push(['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-CYSQREKHK7' }],
+//     ['script', {}, "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"],
+//     ["script", { async: '', src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562", crossorigin: 'anonymous' }])
+// }
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
