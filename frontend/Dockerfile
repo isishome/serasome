@@ -5,14 +5,13 @@ FROM node:16-alpine as build-stage
 WORKDIR /app
 
 # 코드 복사
-COPY ./docs ./docs
-COPY *.json ./
+COPY . .
 
 # 의존성 설치
-RUN npm install
+RUN npm install && \
 
 # 프로젝트 빌드
-RUN npm run docs:build
+    npm run docs:build
 
 # nginx 1.26.0 alpine 버전 기반
 FROM nginx:1.26.0-alpine as service-stage
