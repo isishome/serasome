@@ -63,8 +63,9 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { text: 'Docker란 무엇인가?', link: '/programming/docker/intro' },
-                { text: 'Docker 시작하기', link: '/programming/docker/start' },
-                { text: 'Docker 명령어', link: '/programming/docker/command' }
+                { text: 'Docker 설치하기', link: '/programming/docker/install' },
+                { text: 'Docker 명령어', link: '/programming/docker/command' },
+                //{ text: 'Docker 웹서버 구축하기 1', link: '/programming/docker/webserver1' }
               ]
             },
             {

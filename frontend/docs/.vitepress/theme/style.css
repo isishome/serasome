@@ -132,7 +132,12 @@
       #3d9778 50%);
 }
 
-.vp-doc img {
+.vp-doc img.center {
+  margin: 0 auto;
+}
+
+
+.vp-doc img:not(.no-border) {
   border-radius: 24px;
 }
 
@@ -159,7 +164,7 @@
   padding: 0;
 }
 
-.vp-doc video {
+.vp-doc table video {
   border: solid 1px #00000022;
   border-radius: 24px;
 }

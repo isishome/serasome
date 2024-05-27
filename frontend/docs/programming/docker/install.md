@@ -1,9 +1,9 @@
 ---
-title: Docker 시작하기
+title: Docker 설치하기
 decscription: Docker Desktop을 설치해 봅시다.
 ---
-# Docker 시작하기
-::: info Docker를 시작하기에 앞서
+# Docker 설치하기
+::: info Docker를 설치하기에 앞서
 윈도우 환경에서 Docker Desktop을 설치하고 윈도우 터미널을 이용해 Docker를 다룰 예정입니다.\
 Docker Desktop은 아래와 같은 환경에서 설치가 가능합니다.
 * Mac
