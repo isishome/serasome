@@ -20,19 +20,19 @@ if (prod) {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   transformPageData: (pageData) => {
-    const canonicalUrl = `https://serasome.com/${pageData.relativePath}`
-      .replace(/index\.md$/, '').replace(/\.(md|html)$/, '')
+    try {
+      const canonicalUrl = `https://serasome.com/${pageData.relativePath}`.replace(/index\.md$/, '').replace(/\.(md|html)$/, '')
 
-    pageData.frontmatter.head ??= []
-
-    pageData.frontmatter.head.push(['meta', { property: 'og:title', content: pageData.title }])
-    pageData.frontmatter.head.push(['meta', { property: 'og:description', content: pageData.description }])
-    pageData.frontmatter.head.push(['meta', { property: 'og:image', content: 'https://serasome.com/images/og.jpg' }])
-    pageData.frontmatter.head.push(['meta', { property: 'og:url', content: canonicalUrl }])
-    pageData.frontmatter.head.push([
-      'link',
-      { rel: 'canonical', href: canonicalUrl }
-    ])
+      pageData.frontmatter.head ??= []
+      pageData.frontmatter.head.push(['meta', { property: 'og:title', content: pageData.title }])
+      pageData.frontmatter.head.push(['meta', { property: 'og:description', content: pageData.description }])
+      pageData.frontmatter.head.push(['meta', { property: 'og:image', content: 'https://serasome.com/images/og.jpg' }])
+      pageData.frontmatter.head.push(['meta', { property: 'og:url', content: canonicalUrl }])
+      pageData.frontmatter.head.push(['link', { rel: 'canonical', href: canonicalUrl }])
+    }
+    catch (e) {
+      console.log(e)
+    }
   },
   sitemap: {
     hostname: 'https://serasome.com'
