@@ -103,10 +103,12 @@ $ sudo apt install docker-ce docker-ce-cli containerd.io
 8. 설치가 완료되면 Docker 버전을 확인해봅시다.
 ```Shell
 $ sudo docker -v
+
+Docker version 26.1.0. build 9714adc
 ```
 
 |![Ubuntu 설치](./images/host/docker.webp){:class='image'}|
 |:--:|
 | *Docker 버전 확인*{:class='caption'} |
 
-Docker 설치를 끝으로 기본적인 Docker로 웹서버를 구축하기 위한 호스트 준비가 모두 끝났습니다. 
+Docker 설치를 끝으로 Docker로 웹서버를 구축하기 위한 기본적인 호스트 준비가 모두 끝났습니다. 
