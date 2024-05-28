@@ -60,12 +60,18 @@ export default defineConfig({
                 { text: 'Docker란 무엇인가?', link: '/programming/docker/intro' },
                 { text: 'Docker 설치하기', link: '/programming/docker/install' },
                 { text: 'Docker 명령어', link: '/programming/docker/command' },
-                //{ text: 'Docker 웹서버 구축하기 1', link: '/programming/docker/webserver1' }
+                {
+                  text: 'Docker로 웹서버 구축하기 ',
+                  items: [
+                    { text: '왜 Docker 웹서버인가?', link: '/programming/docker/webserver/why' },
+                    { text: 'Docker 호스트 준비', link: '/programming/docker/webserver/host' }
+                  ]
+                }
               ]
             },
             {
               text: 'Vue.js',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: '준비중', link: '/programming/vue/intro' },
               ]
@@ -86,7 +92,7 @@ export default defineConfig({
             // },
             {
               text: 'Quasar Framework',
-              collapsed: false,
+              collapsed: true,
               items: [
                 { text: 'Sera\'s Quasar Framework', link: 'https://quasar.serasome.com', docFooterText: 'Sera\'s Quasar Framework' }
               ]
