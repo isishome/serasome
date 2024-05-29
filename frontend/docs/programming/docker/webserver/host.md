@@ -6,7 +6,7 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
 ::: info Docker 호스트 준비에 앞서
 어떤 환경(Linux, Unix, Windows 등)에서 Docker를 사용할지는 온전히 사용자의 몫입니다. 결국 호스트에 Docker를 설치하고 내부에 운영되는 컨테이너는 어떤 환경이 되었던지 똑같이 구성해서 사용할수 있습니다.
 
-저는 좀 더 대중적이고 저렴한 Linux/Unix 플랫폼의 **Ubuntu**를 호스트로 사용할 예정이고 이 포스트는 Ubuntu를 기준으로 서술할 예정입니다.
+저는 좀 더 대중적이고 저렴한 Linux/Unix 플랫폼의 **Ubuntu**를 호스트로 사용할 예정이고 이 포스트는 Ubuntu를 기준으로 작성되었습니다.
 :::
 
 ## Lightsail 인스턴스 생성
@@ -69,14 +69,14 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
 > [!important] Docker 설치 방법
 > Docker 설치 방법은 운영체제마다 다르기 때문에 되도록이면 [공식 사이트 문서](https://docs.docker.com/desktop/)를 참고하시는 것을 추천드립니다.
 >
-> 이 포스트는 Ubuntu 22.04 LTS 버전에서 Docker를 설치하는 방법만 소개합니다.
+> 이 포스트는 Ubuntu 22.04 LTS 환경에서 Docker를 설치하는 방법만 소개합니다.
 1. 먼저 생성된 인스턴스에 연결합니다.
 
 |![Ubuntu 설치](./images/host/ssh01.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 SSH 클라인언트 화면*{:class='caption'} |
 
-1. 패키지 업데이트를 실행합니다.
+2. 패키지 업데이트를 실행합니다.
 ```Shell
 $ sudo apt update
 ```
@@ -92,7 +92,7 @@ $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -
 ```Shell
 $ echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-6. 패키지를 업데이트합니다.
+6. 다시 패키지를 업데이트합니다.
 ```Shell
 $ sudo apt update
 ```
@@ -111,4 +111,4 @@ Docker version 26.1.0. build 9714adc
 |:--:|
 | *Docker 버전 확인*{:class='caption'} |
 
-Docker 설치를 끝으로 Docker로 웹서버를 구축하기 위한 기본적인 호스트 준비가 모두 끝났습니다. 
+Docker 설치를 끝으로 **Docker로 웹서버를 구축하기 위한 기본적인 호스트 준비**가 모두 끝났습니다. 

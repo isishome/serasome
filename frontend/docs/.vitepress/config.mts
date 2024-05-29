@@ -64,7 +64,8 @@ export default defineConfig({
                   text: 'Docker로 웹서버 구축하기 ',
                   items: [
                     { text: '왜 Docker 웹서버인가?', link: '/programming/docker/webserver/why' },
-                    { text: 'Docker 호스트 준비', link: '/programming/docker/webserver/host' }
+                    { text: 'Docker 호스트 준비', link: '/programming/docker/webserver/host' },
+                    { text: 'Jenkins 컨테이너', link: '/programming/docker/webserver/jenkins' },
                   ]
                 }
               ]

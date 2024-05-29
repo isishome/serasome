@@ -133,6 +133,7 @@ $ docker exec [옵션] 컨테이너 명령어 [인수...]
 |`-i, --interactive`|컨테이너와 연결(attach)되어 있지 않더라도 표준 입력을 유지|
 |`-t, --tty`|가상으로 터미널과 유사한 환경을 제공|
 |`-d, --detach`|백그라운드에서 컨테이너를 실행하고 컨테이너 ID를 출력|
+|`-u, --user`|Username 또는 UID (형식: `\<name\|uid\>\[:group\|gid\]`)|
 
 ::: tip 컨테이너 command 실행 명령어 별칭
 보통 `docker exec` 명령이 주로 사용되지만 현재 공식 사이트에서는 `docker container exec`이(가) 주 명령어로 표시되며 `docker exec`이(가) 별칭으로 표시되어 있습니다.
@@ -150,7 +151,7 @@ $ docker update [옵션] 컨테이너 [컨테이너...]
 |`-c, --cpu-shares`|CPU 점유율(상대적 가중치)|
 |`-m, --memory`|메모리 한도|
 |`--memory-swap`|스왑 제한은 메모리에 스왑을 더한 값과 같습니다.(-1 무제한 스왑)|
-`--restart`|컨테이너가 종료됐을 때 재시작 관련 정책|
+|`--restart`|컨테이너가 종료됐을 때 재시작 관련 정책|
 
 ::: tip 컨테이너 구성 업데이트 명령어 별칭
 보통 `docker update` 명령이 주로 사용되지만 현재 공식 사이트에서는 `docker container update`이(가) 주 명령어로 표시되며 `docker update`이(가) 별칭으로 표시되어 있습니다.

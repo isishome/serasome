@@ -1,0 +1,143 @@
+---
+title: Jenkins 컨테이너
+description: Docker가 설치된 호스트에 Jenkins 이미지를 이용해 컨테이너화 하는 방법을 소개합니다.
+---
+# Jenkins 컨테이너
+::: info Jenkins 컨테이너화하기 앞서
+[dockerhub](https://hub.docker.com/)에 접속해보면 수많은 Docker 이미지들이 있습니다.
+이 포스트에서는 [jenkins/jenkins:lts-jdk17](https://hub.docker.com/r/jenkins/jenkins) 이미지를 이용해 컨테이너화 하여 초기 설정하는 방법까지 소개합니다.
+:::
+
+## Jenkins 컨테이너화하기
+1. 지난 [포스트](/programming/docker/webserver/host)에서 준비한 <b>인스턴스(호스트)</b>에 접속합니다.
+
+2. `jenkins/jenkins:lts-jdk17` 이미지를 가져옵니다.
+```Shell
+$ sudo docker image pull jenkins/jenkins:lts-jdk17
+```
+
+3. Jenkins와 연동할 호스트의 볼륨 경로를 미리 생성하고 소유자를 변경합니다.
+```Shell
+$ sudo mkdir /var/jenkins_home
+$ sudo chown 1000 /var/jenkins_home
+```
+> [!WARNING] 경고
+> 호스트와 공유할 경로의 소유자를 변경하지 않는 경우 Jenkins 구동 시 **Permission denied**가 발생할 수 있으니 꼭 소유자 변경을 해주세요.
+
+4. 이제 Jenkins를 컨테이너화(실행)합니다.
+```Shell
+$ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-shares="2048" --memory="1g" --memory-swap="1.5g" --publish 8080:8080 --volume /var/jenkins_home:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --env TZ=Asiz/Seoul --name jenkins jenkins/jenkins:lts-jdk17
+```
+|옵션|설명|
+|:-|:-|
+|`--detach`|백그라운드에서 컨테이너를 실행하고 컨테이너 ID를 출력|
+|`--restart`|컨테이너가 종료됐을 때 재시작 관련 정책 (always : 항상 재시작)|
+|`--cpuset-cpus`|실행을 허용할 CPU(0-3, 0, 1)|
+|`-c, --cpu-shares`|CPU 점유율(상대적 가중치)|
+|`-m, --memory`|메모리 한도|
+|`--memory-swap`|스왑 제한은 메모리에 스왑을 더한 값과 같습니다.(-1 무제한 스왑)|
+|`-p, --publish`|호스트에 컨테이너 포트 게시|
+|`-v, --volume`|볼륨 바인드 마운트|
+|`-e, --env`|환경 변수 설정|
+|`--name`|컨테이너에 이름 지정|
+
+> [!TIP] docker.sock
+> - Jenkins 컨테이너 내부에 설치할 Docker와 호스트에 설치된 Docker의 데몬을 연결해줍니다.
+> - 이를 통해 호스트 docker.sock 데몬은 Jenkins 컨테이너의 이벤트를 수신하며 호스트에 설치된 docker의 이미지 내려받기 및 컨테이너 등록, 실행이 가능하게 됩니다.
+
+5. Jenkins 컨테이너가 정상적으로 구동되고 있는지 확인해봅시다.
+```Shell
+$ sudo docker ps
+
+CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS  PORTS   NAMES
+[Jenkins 컨테이너 아이디]   jenkins/jenkins:lts-jdk17   "/usr/bin/tini -- /u..."    10 seconds ago  up 15 seconds   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 50000/tcp    jenkins
+```
+
+## Jenkins 컨테이너에 Docker 설치하기
+1. 구동 중인 Jenkins 컨테이너 Shell에 접속합니다.
+```Shell
+$ sudo docker exec -itu 0 [Jenkins 컨테이너 아이디] /bin/bash
+```
+|옵션|설명|
+|:-|:-|
+|`-i, --interactive`|컨테이너와 연결(attach)되어 있지 않더라도 표준 입력을 유지|
+|`-t, --tty`|가상으로 터미널과 유사한 환경을 제공|
+|`-u, --user`|Username 또는 UID (형식: `\<name\|uid\>\[:group\|gid\]`)|
+
+> [!TIP] -u 0
+> - Jenkins 컨테이너 Shell에 접속할 때 root 권한으로 접속할 수 있도록 해주는 옵션
+
+2. github의 **webhook**을 이용한 자동 배포를 하기 위해 Jenkins <u>컨테이너에서 git 인증</u>을 해줘야 합니다.
+```Shell
+$ git ls-remote -h -- git@github.com:[깃허브 계정]/[프로젝트 깃명] HEAD
+```
+
+3. Jenkins에 Docker를 설치해 줍니다.\
+    Jenkins 컨테이너는 Debian 환경이므로 Debian 환경에 맞게 Docker를 설치합니다.
+```Shell
+$ apt-get update
+$ apt-get install ca-certificates curl
+$ install -m 0755 -d /etc/apt/keyrings
+$ curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+$ chmod a+r /etc/apt/keyrings/docker.asc
+$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+$ apt-get update
+$ apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+4. docker 그룹을 추가하고 Jenkins 사용자에게 docker 그룹 권한을 줍니다.\
+    위에서 설명한 `/var/run/docker.sock` 소유자도 변경해줘야 합니다.
+```Shell
+$ groupadd -f docker
+$ usermod -aG docker jenkins
+$ chown root:docker /var/run/docker.sock
+```
+
+5. Jenkins 컨테이너 접속을 종료하고 호스트 환경으로 돌아와 Jenkins를 재시작 합니다.
+```Shell
+$ sudo docker restart [Jenkins 컨테이너 아이디]
+```
+
+> [!CAUTION] Jenkins 자동 배포 빌드 중 docker 실행 권한 오류
+> - <u>호스트를 재시작 한 경우</u> Jenkins 컨테이너에 접속해 **docker.sock** 소유자 변경을 다시 해줘야 합니다. **그렇지 않은 경우 Jenkins 자동 배포 중 docker 명령어 사용 부분에서 권한 오류가 발생합니다.**
+
+## Jenkins 초기 설정
+1. 브라우저를 통해 Jenkins에 접속해봅시다.\
+    기본적으로 Jenkins는 **8080 포트**로 구동됩니다.
+
+|![Ubuntu 설치](./images/jenkins/jenkins03.webp){:class='image'}|
+|:--:|
+| *Jenkins 잠금 해제*{:class='caption'} |
+
+2. Jenkins를 처음 시작하면 관리자 계정이 없기 때문에 소유자가 맞는지 확인하는 절차가 필요합니다.\
+    Jenkins 컨테이너의 로그를 확인해서 관리자 비밀번호를 확인해 봅시다.
+```Shell
+$ sudo docker logs [Jenkins 컨테이너 아이디]
+```
+|![Ubuntu 설치](./images/jenkins/jenkins01.webp){:class='image'}|
+|:--:|
+| *Jenkins 잠금 해제 암호 확인*{:class='caption'} |
+
+이미지에 표시된 부분에 임시 관리자 비밀번호가 보입니다. 복사 붙여넣기하고 `Continue` 버튼을 눌러 계속 진행합니다.
+
+<br />
+
+3. `Install suggested plugins`를 선택해서 Jenkins에 필요한 플러그인을 자동으로 설치해 줍니다.
+
+|![Ubuntu 설치](./images/jenkins/jenkins04.webp){:class='image'}|
+|:--:|
+| *Jenkins 플러그인 설치*{:class='caption'} |
+
+플러그인 설치가 몇 분정도 진행됩니다.
+|![Ubuntu 설치](./images/jenkins/jenkins06.webp){:class='image'}|
+|:--:|
+| *Jenkins 플러그인 설치 완료*{:class='caption'} |
+
+4. Jenkins 플러그인 설치가 완료되면 **관리자 계정 설정 화면**으로 이동합니다.\
+    앞으로 Jenkins 페이지에 접속하면 이 페이지에서 만든 **관리자 계정**이 필요합니다.
+
+|![Ubuntu 설치](./images/jenkins/jenkins07.webp){:class='image'}|
+|:--:|
+| *Jenkins 플러그인 설치*{:class='caption'} |
+
+Jenkins 초기 설정을 끝으로 **Docker로 웹서버를 구축하기 위한 기본적인 Jenkins 사용 준비**가 모두 끝났습니다.
