@@ -102,7 +102,12 @@ Github Jenkins 저장소 우측 상단의 `Settings`를 선택해 `Deploy Keys`�
 |:--:|
 | *Github Deploy Key 등록*{:class='caption'} |
 
-우측 상단의 `Add deploy key`를 선택해서 **Title** 항목에 원하는 deploy key 이름을, **Key** 항목에 위에서 생성한 `Jenkins.pub` 공개키 내용을 입력하고 `Add key`를 선택하여 deploy key를 등록해 줍니다.
+우측 상단의 `Add deploy key`를 선택해서
+
+1. **Title** 항목에 원하는 deploy key 이름을,
+2. **Key** 항목에 위에서 생성한 `Jenkins.pub` 공개키 내용을 입력하고
+
+`Add key`를 선택하여 deploy key를 등록해 줍니다.
 |![Github Deploy Key 등록](./images/github-jenkins/github06.webp){:class='image'}|
 |:--:|
 | *Github Deploy Key 등록*{:class='caption'} |
@@ -122,7 +127,11 @@ System credential 행 Domains 컬럼의 **(global)** 부분에 마우스를 오�
 |:--:|
 | *Jenkins Credential 등록*{:class='caption'} |
 
-**Kind** 항목에 `SSH Username with private key`를 선택합니다. **Username** 항목에 원하는 credential 이름을, **Enter directly**를 체크하고 **Key** 항목 우측 `Add`를 선택하여 위에서 생성한 `Jenkins` 개인키 내용을 입력하고 `Create`를 선택하여 credential을 등록해 줍니다.
+1. **Kind** 항목에 `SSH Username with private key`를 선택합니다.
+1. **Username** 항목에 원하는 credential 이름을,
+1. **Enter directly**를 체크하고 **Key** 항목 우측 `Add`를 선택하여 위에서 생성한 `Jenkins` 개인키 내용을 입력하고
+
+`Create`를 선택하여 credential을 등록해 줍니다.
 |![Jenkins Credential 등록](./images/github-jenkins/jenkins02.webp){:class='image'}|
 |:--:|
 | *Jenkins Credential 등록*{:class='caption'} |
@@ -180,7 +189,11 @@ Github Jenkins 저장소 우측 상단의 `Settings`를 선택해 `Webhooks`로 
 |:--:|
 | *Github Webhook 등록*{:class='caption'} |
 
-우측 상단의 `Add webhook`을 선택해서 **Payload URL** 항목에 `https://[Jenkins 외부 주소]/github-webhook/`을 입력, **Content type** 항목을 `application/json`으로 선택하고 `Add webhook`을 선택하여 webhook을 등록해 줍니다.
+우측 상단의 `Add webhook`을 선택해서 
+1. **Payload URL** 항목에 `https://[Jenkins 외부 주소]/github-webhook/`을 입력,
+1. **Content type** 항목을 `application/json`으로 선택하고
+
+`Add webhook`을 선택하여 webhook을 등록해 줍니다.
 |![Github Webhook 등록](./images/github-jenkins/webhook02.webp){:class='image'}|
 |:--:|
 | *Github Webhook 등록*{:class='caption'} |
