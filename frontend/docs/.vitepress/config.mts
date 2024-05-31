@@ -60,12 +60,22 @@ export default defineConfig({
                 { text: 'Docker란 무엇인가?', link: '/programming/docker/intro' },
                 { text: 'Docker 설치하기', link: '/programming/docker/install' },
                 { text: 'Docker 명령어', link: '/programming/docker/command' },
+                { text: 'Dockerfile 작성하기', link: '/programming/docker/file' },
                 {
-                  text: 'Docker로 웹서버 구축하기 ',
+                  text: 'Docker로 웹서버 구축하기 ', collapsed: true,
                   items: [
                     { text: '왜 Docker 웹서버인가?', link: '/programming/docker/webserver/why' },
                     { text: 'Docker 호스트 준비', link: '/programming/docker/webserver/host' },
-                    { text: 'Jenkins 컨테이너', link: '/programming/docker/webserver/jenkins' },
+                    {
+                      text: 'Jenkins 컨테이너', link: '/programming/docker/webserver/jenkins', collapsed: true,
+                      items: [
+                        { text: 'Github와 Jenkins 연동하기', link: '/programming/docker/webserver/github-jenkins' }
+                      ]
+                    },
+                    { text: 'Nginx 컨테이너', link: '/programming/docker/webserver/nginx' },
+                    { text: 'Node.js App 컨테이너', link: '/programming/docker/webserver/nodejs' },
+                    { text: '정적 사이트', link: '/programming/docker/webserver/static' },
+                    //{ text: '장애 원인과 해결 방안', link: '/programming/docker/webserver/resolve' }
                   ]
                 }
               ]

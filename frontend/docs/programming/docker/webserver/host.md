@@ -22,7 +22,7 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
 1. 블루프린트 선택\
     **Ubuntu 22.04 LTS**를 체크합니다.
 
-|![Ubuntu 설치](./images/host/instance01.webp){:class='image'}|
+|![Amazon Lightsail 인스턴스 생성 화면](./images/host/instance01.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 생성 화면*{:class='caption'} |
 
@@ -33,7 +33,7 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
 4. 크기 선택\
      저는 **2GB 메모리, 2개의 vCPU 프로세싱, 60GB SSD 스토리지**를 선택했습니다.
 
-|![Ubuntu 설치](./images/host/instance02.webp){:class='image'}|
+|![Amazon Lightsail 인스턴스 생성 화면](./images/host/instance02.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 생성 화면*{:class='caption'} |
 
@@ -48,20 +48,20 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
 6. 인스턴스 확인\
     인스턴스 명(고유)을 입력하고 하단에 `인스턴스 생성` 버튼을 눌러줍니다.
 
-|![Ubuntu 설치](./images/host/instance03.webp){:class='image'}|
+|![Amazon Lightsail 인스턴스 생성 화면](./images/host/instance03.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 생성 화면*{:class='caption'} |
 
 7. 인스턴스가 생성 중인 화면입니다.
 
-|![Ubuntu 설치](./images/host/instance04.webp){:class='image'}|
+|![Amazon Lightsail 인스턴스 생성 화면](./images/host/instance04.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 생성 화면*{:class='caption'} |
 
 8. 인스턴스가 정상적으로 생성되었습니다.\
 우측 상단에 **브라우저 기반 SSH 클라인언트 연결 버튼** 및 **다양한 기능 옵션 버튼**이 표시됩니다.
 
-|![Ubuntu 설치](./images/host/instance05.webp){:class='image'}|
+|![Amazon Lightsail 인스턴스 생성 화면](./images/host/instance05.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 생성 화면*{:class='caption'} |
 
@@ -72,42 +72,42 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
 > 이 포스트는 Ubuntu 22.04 LTS 환경에서 Docker를 설치하는 방법만 소개합니다.
 1. 먼저 생성된 인스턴스에 연결합니다.
 
-|![Ubuntu 설치](./images/host/ssh01.webp){:class='image'}|
+|![Amazon Lightsail 인스턴스 SSH 클라인언트 화면](./images/host/ssh01.webp){:class='image'}|
 |:--:|
 | *Amazon Lightsail 인스턴스 SSH 클라인언트 화면*{:class='caption'} |
 
 2. 패키지 업데이트를 실행합니다.
-```Shell
+```shell
 $ sudo apt update
 ```
 3. 필요 패키지를 설치합니다.
-```Shell
+```shell
 $ sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
 ```
 4. Docker GPG 키를 추가합니다.
-```Shell
+```shell
 $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 5. Docker 저장소를 추가합니다.
-```Shell
+```shell
 $ echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 6. 다시 패키지를 업데이트합니다.
-```Shell
+```shell
 $ sudo apt update
 ```
 7. 이제 Docker를 설치합니다.
-```Shell
+```shell
 $ sudo apt install docker-ce docker-ce-cli containerd.io
 ```
 8. 설치가 완료되면 Docker 버전을 확인해봅시다.
-```Shell
+```shell
 $ sudo docker -v
 
 Docker version 26.1.0. build 9714adc
 ```
 
-|![Ubuntu 설치](./images/host/docker.webp){:class='image'}|
+|![Docker 버전 확인](./images/host/docker.webp){:class='image'}|
 |:--:|
 | *Docker 버전 확인*{:class='caption'} |
 

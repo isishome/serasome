@@ -6,11 +6,11 @@ decscription: Docker에서 사용하는 기본적인 명령어 몇가지를 배�
 
 ## 이미지 리스트
 Docker 이미지 목록을 보여주는 명령어로 PowerShell을 관리자 권한으로 열어 `docker images [옵션] [저장소[:태그]]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker images [옵션] [저장소[:태그]]
 ```
 현재 이미지들의 REPOSITORY, TAG, IMAGE ID, CREATE, SIZE가 순서대로 표시됩니다.
-```Shell
+```shell
 $ docker images
 REPOSITORY   TAG                   IMAGE ID       CREATED         SIZE
 ```
@@ -20,7 +20,7 @@ REPOSITORY   TAG                   IMAGE ID       CREATED         SIZE
 
 ## 이미지 삭제
 Docker 이미지를 삭제하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker rmi [옵션] 이미지 [이미지...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker rmi [옵션] 이미지 [이미지...]
 ```
 
@@ -35,11 +35,11 @@ $ docker rmi [옵션] 이미지 [이미지...]
 
 ## 컨테이너 리스트
 Docker 컨테이너 목록을 보여주는 명령어로 PowerShell을 <b>관리자 권한(시작 메뉴 > PowerShell >에서 관리자 권한으로 실행 >을 마우스 오른쪽 단추로 클릭)</b>으로 열고 `docker ps [옵션]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker ps [옵션]
 ```
 현재 구동 중인 컨테이너들의 ID, IMAGE, COMMAND, CREATED, STATUS, PORTS, NAMES가 순서대로 표시됩니다.
-```Shell
+```shell
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
@@ -56,13 +56,13 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 #### 모든 컨테이너 리스트
 `-a` 옵션을 추가하면 이전에 만들어졌지만 현재 동작하고 있지 않은 컨테이너들도 모두 표시됩니다.
-```Shell
+```shell
 $ docker ps -a
 ```
 
 ## 컨테이너 삭제
 Docker 컨테이너를 삭제하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker rm [옵션] 컨테이너 [컨테이너...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker rm [옵션] 컨테이너 [컨테이너...]
 ```
 
@@ -72,7 +72,7 @@ $ docker rm [옵션] 컨테이너 [컨테이너...]
 
 ## 컨테이너 실행
 Docker 이미지로부터 컨테이너를 실행(생성)하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker run [옵션] 이미지 [명령어] [인수...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker run [옵션] 이미지 [명령어] [인수...]
 ```
 |옵션|설명|
@@ -97,7 +97,7 @@ $ docker run [옵션] 이미지 [명령어] [인수...]
 
 ## 컨테이너 중지
  구동 중인 Docker 컨테이너를 중지하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker stop [옵션] 컨테이너 [컨테이너...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker stop [옵션] 컨테이너 [컨테이너...]
 ```
 |옵션|설명|
@@ -111,7 +111,7 @@ $ docker stop [옵션] 컨테이너 [컨테이너...]
 
 ## 컨테이너 시작
  중지된 Docker 컨테이너를 시작하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker start [옵션] 컨테이너 [컨테이너...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker start [옵션] 컨테이너 [컨테이너...]
 ```
 |옵션|설명|
@@ -125,7 +125,7 @@ $ docker start [옵션] 컨테이너 [컨테이너...]
 
 ## 컨테이너(구동 중) command 실행
 구동 중인 Docker 컨테이너에 command를 실행하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker exec [옵션] 컨테이너 명령어 [인수...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker exec [옵션] 컨테이너 명령어 [인수...]
 ```
 |옵션|설명|
@@ -141,7 +141,7 @@ $ docker exec [옵션] 컨테이너 명령어 [인수...]
 
 ## 컨테이너(구동 중) 구성 업데이트
 구동 중인 Docker 컨테이너에 구성을 업데이트 하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker update [옵션] 컨테이너 [컨테이너...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker update [옵션] 컨테이너 [컨테이너...]
 ```
 |옵션|설명|
@@ -159,7 +159,7 @@ $ docker update [옵션] 컨테이너 [컨테이너...]
 
 ## 컨테이너 로그
 구동 중일 때 Docker 컨테이너에 남겨진 로그를 일괄 검색하는 명령어로 PowerShell을 관리자 권한으로 열어 `docker logs [옵션] 컨테이너` 명령을 입력합니다.
-```Shell
+```shell
 $ docker logs [옵션] 컨테이너
 ```
 |옵션|설명|
@@ -176,7 +176,7 @@ $ docker logs [옵션] 컨테이너
 
 ## 컨테이너 통계
 구동 중인 Docker 컨테이너의 사용 통계를 실시간 스트림으로 표시해주는 명령어로 PowerShell을 관리자 권한으로 열어 `docker stats [옵션] [컨테이너...]` 명령을 입력합니다.
-```Shell
+```shell
 $ docker stats [옵션] [컨테이너...]
 ```
 |옵션|설명|

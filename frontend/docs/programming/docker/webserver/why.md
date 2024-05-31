@@ -19,7 +19,7 @@ description: Docker를 이용해 웹서버를 구축하게 된 이유를 간략�
 게다가 유닉스 환경도 익숙지 않던 더라 원인을 찾는 것도 쉽지 않았습니다.
 단순히 사양이 낮아 발생하는 문제라 생각하고 처음에는 한 단계 한 단계 씩 사양을 올려도 상황은 나아지지 않았습니다.
 
-|![Ubuntu 설치](./images/why/lightsail.webp){:class='image'}|
+|![Amazon Lightsail 지표](./images/why/lightsail.webp){:class='image'}|
 |:--:|
 | *출처 : Amazon Lightsail 지표*{:class='caption'} |
 
@@ -49,13 +49,13 @@ description: Docker를 이용해 웹서버를 구축하게 된 이유를 간략�
 
 기존 웹서버 구성도입니다. 우분투 위에 `Node.js`, `Jenkins`, `Nginx`가 구동되고 **Tradurs Back**와 **Tradurs D4 Front**를 `Node.js` 서비스로 등록했습니다. 그 외 스태틱 사이트들은 따로 경로를 지정해서 Nginx로 연결되어 서비스되는 구조입니다.
 모든 서비스들이 각각 여러 곳에 산재되어 있어 문제가 생길 때마다 관련 서비스들을 점검해 봐야 합니다.
-|![Ubuntu 설치](./images/why/before.webp){:class='image'}|
+|![기존 웹서버 구성도](./images/why/before.webp){:class='image'}|
 |:--:|
 | *기존 웹서버 구성도*{:class='caption'} |
 
 
 기본적으로 인스턴스(호스트)에는 Docker만 설치되고 `Jenkins`, `nginx`, `Node.js 서비스들`은 컨테이너로 `Static Front`는 볼륨 연동으로 구성했습니다. 신규 웹서버 구성이 기존 구성에 비해 매우 단조로워졌습니다.
-|![Ubuntu 설치](./images/why/after.webp){:class='image'}|
+|![신규 웹서버 구성도](./images/why/after.webp){:class='image'}|
 |:--:|
 | *신규 웹서버 구성도*{:class='caption'} |
 

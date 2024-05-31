@@ -9,15 +9,15 @@ description: Docker가 설치된 호스트에 Jenkins 이미지를 이용해 컨
 :::
 
 ## Jenkins 컨테이너화하기
-1. 지난 [포스트](/programming/docker/webserver/host)에서 준비한 <b>인스턴스(호스트)</b>에 접속합니다.
+1. 지난 [Docker 호스트 준비](/programming/docker/webserver/host)에서 준비한 <b>인스턴스(호스트)</b>에 접속합니다.
 
 2. `jenkins/jenkins:lts-jdk17` 이미지를 가져옵니다.
-```Shell
+```shell
 $ sudo docker image pull jenkins/jenkins:lts-jdk17
 ```
 
 3. Jenkins와 연동할 호스트의 볼륨 경로를 미리 생성하고 소유자를 변경합니다.
-```Shell
+```shell
 $ sudo mkdir /var/jenkins_home
 $ sudo chown 1000 /var/jenkins_home
 ```
@@ -25,7 +25,7 @@ $ sudo chown 1000 /var/jenkins_home
 > 호스트와 공유할 경로의 소유자를 변경하지 않는 경우 Jenkins 구동 시 **Permission denied**가 발생할 수 있으니 꼭 소유자 변경을 해주세요.
 
 4. 이제 Jenkins를 컨테이너화(실행)합니다.
-```Shell
+```shell
 $ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-shares="2048" --memory="1g" --memory-swap="1.5g" --publish 8080:8080 --volume /var/jenkins_home:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --env TZ=Asiz/Seoul --name jenkins jenkins/jenkins:lts-jdk17
 ```
 |옵션|설명|
@@ -46,7 +46,7 @@ $ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-sh
 > - 이를 통해 호스트 docker.sock 데몬은 Jenkins 컨테이너의 이벤트를 수신하며 호스트에 설치된 docker의 이미지 내려받기 및 컨테이너 등록, 실행이 가능하게 됩니다.
 
 5. Jenkins 컨테이너가 정상적으로 구동되고 있는지 확인해봅시다.
-```Shell
+```shell
 $ sudo docker ps
 
 CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS  PORTS   NAMES
@@ -55,7 +55,7 @@ CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS  PORTS   NAMES
 
 ## Jenkins 컨테이너에 Docker 설치하기
 1. 구동 중인 Jenkins 컨테이너 Shell에 접속합니다.
-```Shell
+```shell
 $ sudo docker exec -itu 0 [Jenkins 컨테이너 아이디] /bin/bash
 ```
 |옵션|설명|
@@ -68,13 +68,13 @@ $ sudo docker exec -itu 0 [Jenkins 컨테이너 아이디] /bin/bash
 > - Jenkins 컨테이너 Shell에 접속할 때 root 권한으로 접속할 수 있도록 해주는 옵션
 
 2. github의 **webhook**을 이용한 자동 배포를 하기 위해 Jenkins <u>컨테이너에서 git 인증</u>을 해줘야 합니다.
-```Shell
+```shell
 $ git ls-remote -h -- git@github.com:[깃허브 계정]/[프로젝트 깃명] HEAD
 ```
 
 3. Jenkins에 Docker를 설치해 줍니다.\
     Jenkins 컨테이너는 Debian 환경이므로 Debian 환경에 맞게 Docker를 설치합니다.
-```Shell
+```shell
 $ apt-get update
 $ apt-get install ca-certificates curl
 $ install -m 0755 -d /etc/apt/keyrings
@@ -87,14 +87,14 @@ $ apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin doc
 
 4. docker 그룹을 추가하고 Jenkins 사용자에게 docker 그룹 권한을 줍니다.\
     위에서 설명한 `/var/run/docker.sock` 소유자도 변경해줘야 합니다.
-```Shell
+```shell
 $ groupadd -f docker
 $ usermod -aG docker jenkins
 $ chown root:docker /var/run/docker.sock
 ```
 
 5. Jenkins 컨테이너 접속을 종료하고 호스트 환경으로 돌아와 Jenkins를 재시작 합니다.
-```Shell
+```shell
 $ sudo docker restart [Jenkins 컨테이너 아이디]
 ```
 
@@ -103,18 +103,19 @@ $ sudo docker restart [Jenkins 컨테이너 아이디]
 
 ## Jenkins 초기 설정
 1. 브라우저를 통해 Jenkins에 접속해봅시다.\
-    기본적으로 Jenkins는 **8080 포트**로 구동됩니다.
+    기본적으로 Jenkins는 **8080 포트**를 사용합니다.
+    - http://**[인스턴스 주소(IPV4)]**:8080
 
-|![Ubuntu 설치](./images/jenkins/jenkins03.webp){:class='image'}|
+|![Jenkins 잠금 해제](./images/jenkins/jenkins03.webp){:class='image'}|
 |:--:|
 | *Jenkins 잠금 해제*{:class='caption'} |
 
 2. Jenkins를 처음 시작하면 관리자 계정이 없기 때문에 소유자가 맞는지 확인하는 절차가 필요합니다.\
     Jenkins 컨테이너의 로그를 확인해서 관리자 비밀번호를 확인해 봅시다.
-```Shell
+```shell
 $ sudo docker logs [Jenkins 컨테이너 아이디]
 ```
-|![Ubuntu 설치](./images/jenkins/jenkins01.webp){:class='image'}|
+|![Jenkins 잠금 해제 암호 확인](./images/jenkins/jenkins01.webp){:class='image'}|
 |:--:|
 | *Jenkins 잠금 해제 암호 확인*{:class='caption'} |
 
@@ -124,19 +125,19 @@ $ sudo docker logs [Jenkins 컨테이너 아이디]
 
 3. `Install suggested plugins`를 선택해서 Jenkins에 필요한 플러그인을 자동으로 설치해 줍니다.
 
-|![Ubuntu 설치](./images/jenkins/jenkins04.webp){:class='image'}|
+|![Jenkins 플러그인 설치](./images/jenkins/jenkins04.webp){:class='image'}|
 |:--:|
 | *Jenkins 플러그인 설치*{:class='caption'} |
 
 플러그인 설치가 몇 분정도 진행됩니다.
-|![Ubuntu 설치](./images/jenkins/jenkins06.webp){:class='image'}|
+|![Jenkins 플러그인 설치 완료](./images/jenkins/jenkins06.webp){:class='image'}|
 |:--:|
 | *Jenkins 플러그인 설치 완료*{:class='caption'} |
 
 4. Jenkins 플러그인 설치가 완료되면 **관리자 계정 설정 화면**으로 이동합니다.\
     앞으로 Jenkins 페이지에 접속하면 이 페이지에서 만든 **관리자 계정**이 필요합니다.
 
-|![Ubuntu 설치](./images/jenkins/jenkins07.webp){:class='image'}|
+|![Jenkins 플러그인 설치](./images/jenkins/jenkins07.webp){:class='image'}|
 |:--:|
 | *Jenkins 플러그인 설치*{:class='caption'} |
 
