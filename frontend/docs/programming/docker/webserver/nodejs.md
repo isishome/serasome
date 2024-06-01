@@ -4,9 +4,9 @@ description: Docker가 설치된 호스트에 Node.js 이미지를 이용해 컨
 ---
 # Node.js App 컨테이너
 ::: info Node.js App 컨테이너화하기 앞서
-Node.js App 컨테이너는 Github의 **Webhooks** 기능을 활용해 jenkins로 자동 배포하여 컨테이너화할 예정입니다. 
-이 포스트에서는 Node.js App 프로젝트의 구조 및 Dockerfile 작성 그리고 jenkin Shell 명령어 활용법을 다룹니다.
-- **Github의 Webhooks과 Jenkins를 연동하는 방법**은 [Github Webhooks과 jenkin 연동하기](./github-jenkins.md)를 참고하시기 바랍니다.
+Node.js App 컨테이너는 Github의 **Webhooks** 기능을 활용해 jenkins로 자동 배포 + 컨테이너화할 예정입니다. 
+이 포스트에서는 Node.js App 프로젝트의 구조 및 Dockerfile과 jenkin Shell 스크립트 내용을 다룹니다.
+- **Github의 Webhooks를 이용 Jenkins와 연동하는 방법**은 [Github와 jenkin 연동하기](./github-jenkins.md)를 참고하시기 바랍니다.
 :::
 
 지난 포스트인 [Nginx 컨테이너](/programming/docker/webserver/nginx)와 동일한 방식으로 배포 때마다 Docker 이미지 빌드, 새 컨테이너가 구동되도록 하였습니다.
@@ -45,13 +45,13 @@ ENTRYPOINT ["node", "index.js"]
 |`FROM node:16-alpine`|node:16-alpine 이미지를 바탕으로 Docker 이미지를 생성합니다.|
 |`WORKDIR /api`|Node.js App 컨테이너 내부 작업 경로를 지정합니다.|
 |`COPY . .`|Node.js App 파일들을 작업 경로로 복사합니다.|
-|`RUN npm install`|의존성 모듈들을 설치합니다.|
+|`RUN npm install`|Node.js App의 의존성 모듈들을 설치합니다.|
 |`ENV NODE_ENV production`|Node.js 환경 변수를 production 모드로 지정합니다.|
 |`EXPOSE 6081`|Node.js App 컨테이너가 외부 호스트와 연결될 포트를 명시합니다.|
 |`ENTRYPOINT ["node", "index.js"]`|Node.js App을 구동합니다.|
 
 ## Jenkins Node.js App Shell 설정
-Jenkins의 Node.js App 프로젝트 설정으로 이동해 Shell 명령어를 작성합니다.
+Jenkins의 Node.js App 프로젝트 설정으로 이동해 **Build Steps**의 **Execute Shell**을 작성합니다.
 ```shell
 cd /var/jenkins_home/workspace/tradurs-back
 docker build --no-cache --tag tradurs:back .
@@ -71,4 +71,4 @@ docker buildx prune -f
 |`docker system prune -f`|Docker 이미지 및 컨테이너를 정리합니다.|
 |`docker buildx prune -f`|Docker 빌드 캐시를 정리합니다.|
 
-마지막으로 Node.js App 프로젝트 소스를 push 하여 Jenkins를 통해 정상적으로 자동 배포되는지 확인하면 됩니다.
+마지막으로 Node.js App의 소스를 `git push` 하여 Jenkins를 통해 정상적으로 자동 배포되는지 확인하면 됩니다.

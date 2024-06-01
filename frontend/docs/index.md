@@ -10,10 +10,6 @@ hero:
     src: /images/logo_shadow.svg
     alt: Sera's Something
   actions:
-    - theme: brand
-      text: 나는 누구?
-      link: /profile
-      disable: true
     - theme: alt
       text: 프로그래밍
       link: /programming/docker/intro

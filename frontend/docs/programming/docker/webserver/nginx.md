@@ -5,19 +5,25 @@ description: Docker가 설치된 호스트에 Nginx 이미지를 이용해 컨�
 # Nginx 컨테이너
 ::: info Nginx 컨테이너화하기 앞서
 Nginx 컨테이너는 Github의 **Webhooks** 기능을 활용해 jenkins로 자동 배포하여 컨테이너화할 예정입니다. 
-이 포스트에서는 Nginx 프로젝트의 구조 및 Dockerfile 작성 그리고 jenkin Shell 명령어 활용법을 다룹니다.
-- **Github의 Webhooks과 Jenkins를 연동하는 방법**은 [Github Webhooks과 jenkin 연동하기](./github-jenkins.md)를 참고하시기 바랍니다.
+이 포스트에서는 Nginx 프로젝트의 구조 및 Dockerfile과 jenkin Shell 스크립트 내용을 다룹니다.
+- **Github의 Webhooks를 이용 Jenkins와 연동하는 방법**은 [Github와 jenkin 연동하기](./github-jenkins.md)를 참고하시기 바랍니다.
 :::
 
-지난 포스트인 [Jenkins 컨테이너](/programming/docker/webserver/jenkins)와 달리 Nginx 컨테이너는 nginx 설정 파일(nginx.conf 등)의 추가, 수정이 빈번할 것으로 예상되어 배포 때마다 Docker 이미지 빌드, 새 컨테이너가 구동되도록 하였습니다.
+지난 포스트인 [Jenkins 컨테이너](/programming/docker/webserver/jenkins)와 달리 Nginx 컨테이너는 설정 파일(nginx.conf 등) 수정이 자주 이뤄지므로 배포 때마다 Docker 이미지 빌드, 새 컨테이너가 구동되도록 하였습니다.
+
 > [!CAUTION] Nginx 컨테이너와 Jenkins 컨테이너 얽힘 문제
-> Jenkins 서비스 역시 Nginx 컨테이너를 통해 외부로 제공되기 때문에 구동 중인 Nginx 컨테이너가 중지될 때 Jenkins가 외부와 연결이 잠깐(502) 끊기는 현상이 발생합니다. 
+> Jenkins 서비스 역시 Nginx 컨테이너를 통해 외부로 제공되기 때문에 구동 중인 Nginx 컨테이너가 중지(배포 시)될 때 Jenkins가 외부와 연결이 잠깐 끊기는 현상(502)이 발생합니다. 
 >
-> 단순히 Nginx 프락시 연결이 외부와 끊길 뿐, **구동되고 있는 Jenkins 내부 빌드에는 어떠한 영향도 없으니 걱정하지 않으셔도 됩니다.**.
+> - 이는 단순히 Nginx 프락시 연결이 외부와 끊길 뿐, **구동되는 Jenkins 빌드에는 영향을 주지 않습니다**.
+
 ## Nginx 프로젝트 구조
-Nginx 프로젝트는 원하는 사이트 구성(`한 파일에 병합하여 사용` or `각 파일을 만들어 include` or `...`)에 따라 구성하면 됩니다.
+Nginx 프로젝트는 원하는 사이트 구성
+- 하나의 설정 파일로 사용
+- 각 사이트의 파일을 만들어 `include` or `...`
+
+ 등등 원하는 구조로 구성하면 됩니다.
 > [!WARNING] 주의
-> 잘못된 설정 파일 문제로 Nginx 컨테이너가 구동되지 않는 경우 Jenkins도 외부와 연동되지 않으므로 **꼭 로컬 테스트를 거쳐** 배포하시기 바랍니다.
+> 잘못된 설정 파일 문제(오타 포함)로 Nginx 컨테이너를 시작하지 못하게 되면 **Jenkins 서비스 또한 외부와 연결이 끊겨 Github webhook을 사용할 수 없기 때문에** <u>항상 로컬 테스트를 거친 후 배포하시기 바랍니다</u>.
 
 ```
 nginx
@@ -59,7 +65,7 @@ ENTRYPOINT ["nginx", "-g", "daemon off;"]
 |`EXPOSE 80`|Nginx 컨테이너가 외부 호스트와 연결될 포트를 명시합니다.|
 |`ENTRYPOINT ["nginx", "-g", "daemon off;"]`|Nginx 서버를 구동합니다.<br /> `daemon off`는 nginx 서버가 foreground로 실행되도록 하는 명령어입니다. 이를 지정하지 않으면 해당 컨테이너에 `--detach` 옵션으로 접근하더라도 서버가 중지됩니다.|
 ## Jenkins Nginx Shell 설정
-Jenkins의 nginx 프로젝트 설정으로 이동해 Shell 명령어를 작성합니다.
+Jenkins의 nginx 프로젝트 설정으로 이동해 **Build Steps**의 **Execute Shell**을 작성합니다.
 ```shell
 cd /var/jenkins_home/workspace/nginx
 docker build --no-cache --tag nginx:host .
@@ -79,4 +85,4 @@ docker buildx prune -f
 |`docker system prune -f`|Docker 이미지 및 컨테이너를 정리합니다.|
 |`docker buildx prune -f`|Docker 빌드 캐시를 정리합니다.|
 
-마지막으로 Nginx 프로젝트 소스를 push 하여 Jenkins를 통해 정상적으로 자동 배포되는지 확인하면 됩니다.
+마지막으로 Nginx의 소스를 `git push` 하여 Jenkins를 통해 정상적으로 자동 배포되는지 확인하면 됩니다.
