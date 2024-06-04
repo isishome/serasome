@@ -35,7 +35,7 @@ $ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-sh
 |`--cpuset-cpus`|실행을 허용할 CPU(0-3, 0, 1)|
 |`-c, --cpu-shares`|CPU 점유율(상대적 가중치)|
 |`-m, --memory`|메모리 한도|
-|`--memory-swap`|스왑 제한은 메모리에 스왑을 더한 값과 같습니다.(-1 무제한 스왑)|
+|`--memory-swap`|스왑 한도는 메모리에 스왑을 더한 값과 같습니다.(-1 무제한 스왑)|
 |`-p, --publish`|호스트에 컨테이너 포트 게시|
 |`-v, --volume`|볼륨 바인드 마운트|
 |`-e, --env`|환경 변수 설정|

@@ -75,7 +75,7 @@ export default defineConfig({
                     { text: 'Nginx 컨테이너', link: '/programming/docker/webserver/nginx' },
                     { text: 'Node.js App 컨테이너', link: '/programming/docker/webserver/nodejs' },
                     { text: '정적 사이트', link: '/programming/docker/webserver/static' },
-                    //{ text: '장애 원인과 해결 방안', link: '/programming/docker/webserver/resolve' }
+                    { text: '서버 장애 그리고 해결 과정', link: '/programming/docker/webserver/resolve' }
                   ]
                 }
               ]
