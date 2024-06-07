@@ -117,10 +117,11 @@ process.on('SIGINT', shutdownHandler)
 ```
 `shutdownHandler` 핸들러에 차례대로
 
+1. **http 연결 닫기**
 1. **mariadb 연결 닫기**
 1. **socket 연결 끊기**
 1. **session 저장소 제거** 
-1. **http 연결 닫기**
+
 
 프로세스에 `SIGTERM`과 `SIGINT` 신호를 받았을 동작하도록 핸들러를 연결해 주었습니다.
 
