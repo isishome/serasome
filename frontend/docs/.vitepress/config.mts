@@ -67,7 +67,7 @@ export default defineConfig({
                     { text: '왜 Docker 웹서버인가?', link: '/programming/docker/webserver/why' },
                     { text: 'Docker 호스트 준비', link: '/programming/docker/webserver/host' },
                     {
-                      text: 'Jenkins 컨테이너', link: '/programming/docker/webserver/jenkins', collapsed: true,
+                      text: 'Jenkins 컨테이너', link: '/programming/docker/webserver/jenkins',
                       items: [
                         { text: 'Github와 Jenkins 연동하기', link: '/programming/docker/webserver/github-jenkins' }
                       ]
@@ -75,7 +75,13 @@ export default defineConfig({
                     { text: 'Nginx 컨테이너', link: '/programming/docker/webserver/nginx' },
                     { text: 'Node.js App 컨테이너', link: '/programming/docker/webserver/nodejs' },
                     { text: '정적 사이트', link: '/programming/docker/webserver/static' },
-                    { text: '서버 장애 그리고 해결 과정', link: '/programming/docker/webserver/resolve' }
+                    {
+                      text: '서버 장애 그리고 해결 과정', link: '/programming/docker/webserver/resolve',
+                      items: [
+                        { text: '컨테이너 자원 분배', link: '/programming/docker/webserver/resolves/resource' },
+                        { text: 'SIGTERM SIGINT', link: '/programming/docker/webserver/resolves/process-exit' }
+                      ]
+                    }
                   ]
                 }
               ]
