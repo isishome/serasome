@@ -79,7 +79,12 @@ export default defineConfig({
                       text: '서버 장애 그리고 해결 과정', link: '/programming/docker/webserver/resolve',
                       items: [
                         { text: '컨테이너 자원 분배', link: '/programming/docker/webserver/resolves/resource' },
-                        { text: 'SIGTERM SIGINT', link: '/programming/docker/webserver/resolves/process-exit' }
+                        { text: 'SIGTERM SIGINT', link: '/programming/docker/webserver/resolves/process-exit' },
+                        { text: 'Nginx 작업자 연결 부족', link: '/programming/docker/webserver/resolves/worker-connection' },
+                        //{ text: 'Jenkins 빌드 로그', link: '/programming/docker/webserver/resolves/build-log' },
+                        { text: 'MariaDB 커넥션 풀', link: '/programming/docker/webserver/resolves/connection-pool' },
+                        //{ text: 'MariaDB 스레드 풀', link: '/programming/docker/webserver/resolves/thread-pool' },
+                        //{ text: 'Nginx 요청 제한', link: '/programming/docker/webserver/resolves/rate-limit' },
                       ]
                     }
                   ]
