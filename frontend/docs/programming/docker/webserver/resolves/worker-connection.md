@@ -14,10 +14,14 @@ $ sudo docker logs --tail 100 컨테이너
 > [!tip] 일부 로그만 확인
 > **docker logs** 명령어의 `--tail` 옵션을 사용하면 가장 끝부터 위로 지정한 라인수만큼의 로그만 볼 수 있습니다.
 
-> [!tip] error 로그만 확인
-> - 다음 명령을 사용하면 Nginx 컨테이너의 에러 로그만 확인할 수 있습니다.
+> [!tip] 특정 로그만 확인
+> - 다음 명령을 사용하면 Nginx 컨테이너의 error 로그만 확인할 수 있습니다.
 > ```shell
 > $ sudo docker logs -f 컨테이너 1>/dev/null
+> ```
+> - 다음 명령을 사용하면 Nginx 컨테이너의 access 로그를 확인할 수 있습니다.
+> ```shell
+> $ sudo docker logs -f 컨테이너 2>/dev/null
 > ```
 
 정상적인 로그 사이에 이상한 로그가 대량으로 남아있었습니다.
