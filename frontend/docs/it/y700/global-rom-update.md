@@ -21,7 +21,24 @@ description: 레노버 리전 Y700 2세대 글로벌 롬 소프트웨어 버전�
 
 ## 업데이트 패키지 다운로드
 
-[15.0.358 ota 패키지 파일 링크](https://s.ppomppu.co.kr/?idno=androidtab_198611&target=aHR0cHM6Ly9vdGEtY2RuLmxlbm92by5jb20vZmlybXdhcmUvMjAyNDc5MTYwMjM5Mi0yODg0LnppcA==&encode=on)
+[15.0.358 ota 패키지 파일 링크](https://ota-cdn.lenovo.com/firmware/2024791602392-2884.zip)
+
+[ZUI 16.0.324 ota 패키지 파일 링크](https://ota-cdn.lenovo.com/firmware/202471914561387-3993.zip)
+
+::: info 버전 요약
+
+- **15.0.358 ota 패키지 파일** : 글로벌 롬 ZUI 15의 358 버전
+- **ZUI 16.0.324 ota 패키지 파일** : 글로벌 롬 ZUI 16의 324 버전
+
+ZUI 16은 최근 출시한 OS로 안드로이드 버전이 기존 **13** 기반에서 **14**로 업그레이드 됩니다.\
+새 OS 설치를 원하지 않는 경우 <u>15.0.358 ota 패키지</u>로 업데이트 하시면 됩니다.
+:::
+
+::: danger 경고
+
+- ZUI 16 설치 시 **기존 디스플레이 크기를 변경해서 사용하는 경우 기본으로 설정 후 설치하셔야 합니다.** (설치 완료 후 무한 재부팅 발생 보고됨)
+- ZUI 16 설치 시 기존에 **정상적으로 가능하던 앱에 문제가 발생**할 수 있습니다. (문제 보고됨)
+  :::
 
 태블릿에서 패키지 파일을 읽을 수 있도록 미리 파일명을 `ota.zip`로 변경해둡니다.
 
