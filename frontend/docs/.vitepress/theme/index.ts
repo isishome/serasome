@@ -9,7 +9,7 @@ export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      'doc-before': () => {
+      'doc-after': () => {
         return (!import.meta.env.SSR && window?.innerWidth
           ? window?.innerWidth
           : 0) < 1280
@@ -17,8 +17,8 @@ export default {
               'ClientOnly',
               h(Adsense, {
                 dataAdSlot: '7595465749',
-                width: 320,
-                height: 100
+                width: 728,
+                height: 90
               })
             )
           : undefined

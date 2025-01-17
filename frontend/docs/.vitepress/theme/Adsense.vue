@@ -10,28 +10,28 @@ declare global {
 const props = defineProps({
   dataAdSlot: {
     type: String,
-    default: undefined
+    default: null
   },
   width: {
     type: [Number, String],
-    default: undefined
+    default: null
   },
   height: {
     type: [Number, String],
-    default: undefined
+    default: null
   },
   dataAdFormat: {
     type: String,
-    default: undefined
+    default: null
   },
   dataFullWidthResponsive: {
     type: Boolean,
-    default: undefined
+    default: null
   }
 })
 
 const dataAdtest = computed(() =>
-  import.meta.env.DEV || !!!props.dataAdSlot ? 'on' : undefined
+  import.meta.env.DEV || !!!props.dataAdSlot ? 'on' : null
 )
 const style = computed(() =>
   props.width && props.height
