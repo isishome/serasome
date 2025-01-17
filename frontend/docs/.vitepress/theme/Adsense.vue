@@ -7,26 +7,44 @@ declare global {
   }
 }
 
+defineProps({
+  dataAdSlot: {
+    type: String,
+    default: '7901796235'
+  },
+  width: {
+    type: [Number, String],
+    default: 160
+  },
+  height: {
+    type: [Number, String],
+    default: 600
+  }
+})
+
 const dataAdtest = import.meta.env.DEV
 
 const render = () => {
-  (window.adsbygoogle || []).push({})
+  ;(window.adsbygoogle || []).push({})
 }
 
 onMounted(() => {
   if (document.readyState !== 'complete')
     window.addEventListener('load', render)
-  else
-    render()
+  else render()
 })
 </script>
 
 <template>
   <div class="wrap">
     <div class="ads-wrap">
-      <ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px;"
-        data-ad-client="ca-pub-5110777286519562" data-ad-slot="7901796235"
-        :data-adtest="dataAdtest ? 'on' : null"></ins>
+      <ins
+        class="adsbygoogle"
+        :style="`display: inline-block; width: ${width}px; height: ${height}px`"
+        data-ad-client="ca-pub-5110777286519562"
+        :data-ad-slot="dataAdSlot"
+        :data-adtest="dataAdtest ? 'on' : null"
+      ></ins>
     </div>
   </div>
 </template>
@@ -42,7 +60,6 @@ onMounted(() => {
   align-items: center;
   padding: 32px;
   border-radius: 12px;
-  min-height: 600px;
   text-align: center;
   line-height: 18px;
   font-size: 12px;

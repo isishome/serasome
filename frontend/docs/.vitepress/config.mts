@@ -1,40 +1,108 @@
-import { defineConfig, type HeadConfig } from 'vitepress'
+import { defineConfig, type HeadConfig } from 'vitepress';
 
-const prod = process.env.NODE_ENV === 'production'
+const prod = process.env.NODE_ENV === 'production';
 const heads: HeadConfig[] = [
   ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
-  ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-  ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap' }],
-  ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicon/apple-touch-icon.png' }],
-  ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon/favicon-32x32.png' }],
-  ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon/favicon-16x16.png' }],
+  [
+    'link',
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }
+  ],
+  [
+    'link',
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'
+    }
+  ],
+  [
+    'link',
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      href: '/favicon/apple-touch-icon.png'
+    }
+  ],
+  [
+    'link',
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      href: '/favicon/favicon-32x32.png'
+    }
+  ],
+  [
+    'link',
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      href: '/favicon/favicon-16x16.png'
+    }
+  ],
   ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }]
-]
+];
 
 if (prod) {
-  heads.push(['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-CYSQREKHK7' }],
-    ['script', {}, "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"],
-    ["script", { async: '', src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562", crossorigin: 'anonymous' }])
+  heads.push(
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-CYSQREKHK7'
+      }
+    ],
+    [
+      'script',
+      {},
+      "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"
+    ],
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562',
+        crossorigin: 'anonymous'
+      }
+    ]
+  );
 }
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   transformPageData: (pageData) => {
-    const canonicalUrl = `https://serasome.com/${pageData.relativePath}`.replace(/index\.md$/, '').replace(/\.(md|html)$/, '')
+    const canonicalUrl = `https://serasome.com/${pageData.relativePath}`
+      .replace(/index\.md$/, '')
+      .replace(/\.(md|html)$/, '');
 
-    pageData.frontmatter.head ??= []
-    pageData.frontmatter.head.push(['meta', { property: 'og:title', content: pageData.title }])
-    pageData.frontmatter.head.push(['meta', { property: 'og:description', content: pageData.description }])
-    pageData.frontmatter.head.push(['meta', { property: 'og:image', content: 'https://serasome.com/images/og.jpg' }])
-    pageData.frontmatter.head.push(['meta', { property: 'og:url', content: canonicalUrl }])
-    pageData.frontmatter.head.push(['link', { rel: 'canonical', href: canonicalUrl }])
+    pageData.frontmatter.head ??= [];
+    pageData.frontmatter.head.push([
+      'meta',
+      { property: 'og:title', content: pageData.title }
+    ]);
+    pageData.frontmatter.head.push([
+      'meta',
+      { property: 'og:description', content: pageData.description }
+    ]);
+    pageData.frontmatter.head.push([
+      'meta',
+      { property: 'og:image', content: 'https://serasome.com/images/og.jpg' }
+    ]);
+    pageData.frontmatter.head.push([
+      'meta',
+      { property: 'og:url', content: canonicalUrl }
+    ]);
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: canonicalUrl }
+    ]);
   },
   sitemap: {
     hostname: 'https://serasome.com'
   },
   locales: {
     root: {
-      title: 'Sera\'s Something',
+      title: "Sera's Something",
       description: '프로그래밍 & IT & 그밖에 관심 있는 모든 것',
       label: '한국어',
       lang: 'ko',
@@ -47,7 +115,8 @@ export default defineConfig({
         logo: '/images/logo.svg',
         notFound: {
           title: '페이지를 찾을 수 없습니다',
-          quote: '방문하시려는 페이지의 주소가 잘못 입력되었거나, 페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다. 입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.',
+          quote:
+            '방문하시려는 페이지의 주소가 잘못 입력되었거나, 페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다. 입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.',
           linkLabel: '홈으로 이동',
           linkText: '홈으로 가기'
         },
@@ -57,32 +126,77 @@ export default defineConfig({
               text: 'Docker',
               collapsed: true,
               items: [
-                { text: 'Docker란 무엇인가?', link: '/programming/docker/intro' },
-                { text: 'Docker 설치하기', link: '/programming/docker/install' },
-                { text: 'Docker 명령어', link: '/programming/docker/command' },
-                { text: 'Dockerfile 작성하기', link: '/programming/docker/file' },
                 {
-                  text: 'Docker로 웹서버 구축하기 ', collapsed: true,
+                  text: 'Docker란 무엇인가?',
+                  link: '/programming/docker/intro'
+                },
+                {
+                  text: 'Docker 설치하기',
+                  link: '/programming/docker/install'
+                },
+                { text: 'Docker 명령어', link: '/programming/docker/command' },
+                {
+                  text: 'Dockerfile 작성하기',
+                  link: '/programming/docker/file'
+                },
+                {
+                  text: 'Docker로 웹서버 구축하기 ',
+                  collapsed: true,
                   items: [
-                    { text: '왜 Docker 웹서버인가?', link: '/programming/docker/webserver/why' },
-                    { text: 'Docker 호스트 준비', link: '/programming/docker/webserver/host' },
                     {
-                      text: 'Jenkins 컨테이너', link: '/programming/docker/webserver/jenkins',
+                      text: '왜 Docker 웹서버인가?',
+                      link: '/programming/docker/webserver/why'
+                    },
+                    {
+                      text: 'Docker 호스트 준비',
+                      link: '/programming/docker/webserver/host'
+                    },
+                    {
+                      text: 'Jenkins 컨테이너',
+                      link: '/programming/docker/webserver/jenkins',
                       items: [
-                        { text: 'Github와 Jenkins 연동하기', link: '/programming/docker/webserver/github-jenkins' }
+                        {
+                          text: 'Github와 Jenkins 연동하기',
+                          link: '/programming/docker/webserver/github-jenkins'
+                        }
                       ]
                     },
-                    { text: 'Nginx 컨테이너', link: '/programming/docker/webserver/nginx' },
-                    { text: 'Node.js App 컨테이너', link: '/programming/docker/webserver/nodejs' },
-                    { text: '정적 사이트', link: '/programming/docker/webserver/static' },
                     {
-                      text: '서버 장애 그리고 해결 과정', link: '/programming/docker/webserver/resolve',
+                      text: 'Nginx 컨테이너',
+                      link: '/programming/docker/webserver/nginx'
+                    },
+                    {
+                      text: 'Node.js App 컨테이너',
+                      link: '/programming/docker/webserver/nodejs'
+                    },
+                    {
+                      text: '정적 사이트',
+                      link: '/programming/docker/webserver/static'
+                    },
+                    {
+                      text: '서버 장애 그리고 해결 과정',
+                      link: '/programming/docker/webserver/resolve',
                       items: [
-                        { text: '컨테이너 자원 분배', link: '/programming/docker/webserver/resolves/resource' },
-                        { text: 'SIGTERM SIGINT', link: '/programming/docker/webserver/resolves/process-exit' },
-                        { text: 'Nginx 작업자 연결 부족', link: '/programming/docker/webserver/resolves/worker-connection' },
-                        { text: 'Jenkins 빌드 로그', link: '/programming/docker/webserver/resolves/build-log' },
-                        { text: 'MariaDB 커넥션 풀', link: '/programming/docker/webserver/resolves/connection-pool' },
+                        {
+                          text: '컨테이너 자원 분배',
+                          link: '/programming/docker/webserver/resolves/resource'
+                        },
+                        {
+                          text: 'SIGTERM SIGINT',
+                          link: '/programming/docker/webserver/resolves/process-exit'
+                        },
+                        {
+                          text: 'Nginx 작업자 연결 부족',
+                          link: '/programming/docker/webserver/resolves/worker-connection'
+                        },
+                        {
+                          text: 'Jenkins 빌드 로그',
+                          link: '/programming/docker/webserver/resolves/build-log'
+                        },
+                        {
+                          text: 'MariaDB 커넥션 풀',
+                          link: '/programming/docker/webserver/resolves/connection-pool'
+                        }
                         //{ text: 'MariaDB 스레드 풀', link: '/programming/docker/webserver/resolves/thread-pool' },
                         //{ text: 'Nginx 요청 제한', link: '/programming/docker/webserver/resolves/rate-limit' },
                         //{ text: 'MariaDB 버퍼 풀', link: '/programming/docker/webserver/resolves/buffer-pool' }
@@ -95,9 +209,7 @@ export default defineConfig({
             {
               text: 'Vue.js',
               collapsed: true,
-              items: [
-                { text: '준비중', link: '/programming/vue/intro' },
-              ]
+              items: [{ text: '준비중', link: '/programming/vue/intro' }]
             },
             // {
             //   text: 'Vue Router',
@@ -117,7 +229,11 @@ export default defineConfig({
               text: 'Quasar Framework',
               collapsed: true,
               items: [
-                { text: 'Sera\'s Quasar Framework', link: 'https://quasar.serasome.com', docFooterText: 'Sera\'s Quasar Framework' }
+                {
+                  text: "Sera's Quasar Framework",
+                  link: 'https://quasar.serasome.com',
+                  docFooterText: "Sera's Quasar Framework"
+                }
               ]
             }
           ],
@@ -129,7 +245,10 @@ export default defineConfig({
                 { text: '소개', link: '/it/y700/intro' },
                 { text: '구성품 및 리뷰', link: '/it/y700/components' },
                 { text: '글로벌 롬 설치', link: '/it/y700/global-rom' },
-                { text: '글로벌 롬 ota 수동 업데이트', link: '/it/y700/global-rom-update' },
+                {
+                  text: '글로벌 롬 ota 수동 업데이트',
+                  link: '/it/y700/global-rom-update'
+                },
                 { text: '기본 설정', link: '/it/y700/settings' },
                 { text: '다양한 기능', link: '/it/y700/features' },
                 { text: '전용 펜(AP500U) 리뷰', link: '/it/y700/pen' },
@@ -156,7 +275,7 @@ export default defineConfig({
         //   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
         // ]
       }
-    },
+    }
     // en: {
     //   title: 'English Test Site',
     //   description: 'English Test Description',
@@ -168,13 +287,12 @@ export default defineConfig({
     //     ]
     //   }
     // }
-
   },
   head: heads,
   themeConfig: {
     footer: {
       message: 'Made with VitePress.',
-      copyright: 'Copyright © 2024-present SeraSome'
+      copyright: 'Copyright © 2025-present SeraSome'
     }
   },
   cleanUrls: true,
@@ -184,4 +302,4 @@ export default defineConfig({
     }
   },
   outDir: './../dist'
-})
+});

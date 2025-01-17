@@ -9,7 +9,11 @@ export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      'aside-ads-before': () => h(Adsense)
+      'aside-ads-before': () =>
+        h(
+          'ClientOnly',
+          h(Adsense, { dataAdSlot: '7901796235', width: 160, height: 600 })
+        )
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
     })
   },
