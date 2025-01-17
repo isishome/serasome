@@ -36,7 +36,7 @@ const dataAdtest = computed(() =>
 const style = computed(() =>
   props.width && props.height
     ? `display: inline-block; width: ${props.width}px; height: ${props.height}px`
-    : `display: block; min-height: 50px`
+    : `display: block; min-width: 100px; min-height: 50px`
 )
 
 const render = () => {
