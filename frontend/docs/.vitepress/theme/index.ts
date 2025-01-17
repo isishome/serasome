@@ -10,7 +10,9 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       'doc-before': () => {
-        return (window.innerWidth ?? 0) < 1280
+        return (!import.meta.env.SSR && window?.innerWidth
+          ? window?.innerWidth
+          : 0) < 1280
           ? h(
               'ClientOnly',
               h(Adsense, {
@@ -22,7 +24,9 @@ export default {
           : undefined
       },
       'aside-ads-before': () => {
-        return (window.innerWidth ?? 0) >= 1280
+        return (!import.meta.env.SSR && window?.innerWidth
+          ? window?.innerWidth
+          : 0) >= 1280
           ? h(
               'ClientOnly',
               h(Adsense, {
