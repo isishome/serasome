@@ -36,7 +36,7 @@ const dataAdtest = computed(() =>
 const style = computed(() =>
   props.width && props.height
     ? `display: inline-block; width: ${props.width}px; height: ${props.height}px`
-    : `display: block`
+    : `display: block; width: 300px; height: 50px`
 )
 
 const render = () => {
@@ -83,7 +83,6 @@ onMounted(() => {
   line-height: 18px;
   font-size: 12px;
   font-weight: 500;
-  min-width: 100px;
   background-color: var(--vp-carbon-ads-bg-color);
 }
 </style>
