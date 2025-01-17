@@ -17,8 +17,8 @@ export default {
               'ClientOnly',
               h(Adsense, {
                 dataAdSlot: '7595465749',
-                dataAdFormat: 'auto',
-                dataFullWidthResponsive: true
+                width: 320,
+                height: 100
               })
             )
           : undefined
