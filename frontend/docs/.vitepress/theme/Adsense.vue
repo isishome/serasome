@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 
 declare global {
   interface Window {
@@ -7,24 +7,40 @@ declare global {
   }
 }
 
-defineProps({
+const props = defineProps({
   dataAdSlot: {
     type: String,
-    default: '7901796235'
+    default: undefined
   },
   width: {
     type: [Number, String],
-    default: 160
+    default: undefined
   },
   height: {
     type: [Number, String],
-    default: 600
+    default: undefined
+  },
+  dataAdFormat: {
+    type: String,
+    default: undefined
+  },
+  dataFullWidthResponsive: {
+    type: Boolean,
+    default: undefined
   }
 })
 
-const dataAdtest = import.meta.env.DEV
+const dataAdtest = computed(() =>
+  import.meta.env.DEV || !!!props.dataAdSlot ? 'on' : undefined
+)
+const style = computed(() =>
+  props.width && props.height
+    ? `display: inline-block; width: ${props.width}px; height: ${props.height}px`
+    : undefined
+)
 
 const render = () => {
+  if (!!!props.dataAdSlot) return
   ;(window.adsbygoogle || []).push({})
 }
 
@@ -40,10 +56,12 @@ onMounted(() => {
     <div class="ads-wrap">
       <ins
         class="adsbygoogle"
-        :style="`display: inline-block; width: ${width}px; height: ${height}px`"
+        :style="style"
         data-ad-client="ca-pub-5110777286519562"
         :data-ad-slot="dataAdSlot"
-        :data-adtest="dataAdtest ? 'on' : null"
+        :data-adtest="dataAdtest"
+        :data-ad-format="dataAdFormat"
+        :data-full-width-responsive="dataFullWidthResponsive"
       ></ins>
     </div>
   </div>
@@ -52,6 +70,7 @@ onMounted(() => {
 <style scoped="module">
 .wrap {
   margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 .ads-wrap {

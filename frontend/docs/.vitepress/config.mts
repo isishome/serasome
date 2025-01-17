@@ -1,6 +1,6 @@
-import { defineConfig, type HeadConfig } from 'vitepress';
+import { defineConfig, type HeadConfig } from 'vitepress'
 
-const prod = process.env.NODE_ENV === 'production';
+const prod = process.env.NODE_ENV === 'production'
 const heads: HeadConfig[] = [
   ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
   [
@@ -41,7 +41,7 @@ const heads: HeadConfig[] = [
     }
   ],
   ['link', { rel: 'manifest', href: '/favicon/site.webmanifest' }]
-];
+]
 
 if (prod) {
   heads.push(
@@ -65,7 +65,7 @@ if (prod) {
         crossorigin: 'anonymous'
       }
     ]
-  );
+  )
 }
 
 // https://vitepress.dev/reference/site-config
@@ -73,29 +73,29 @@ export default defineConfig({
   transformPageData: (pageData) => {
     const canonicalUrl = `https://serasome.com/${pageData.relativePath}`
       .replace(/index\.md$/, '')
-      .replace(/\.(md|html)$/, '');
+      .replace(/\.(md|html)$/, '')
 
-    pageData.frontmatter.head ??= [];
+    pageData.frontmatter.head ??= []
     pageData.frontmatter.head.push([
       'meta',
       { property: 'og:title', content: pageData.title }
-    ]);
+    ])
     pageData.frontmatter.head.push([
       'meta',
       { property: 'og:description', content: pageData.description }
-    ]);
+    ])
     pageData.frontmatter.head.push([
       'meta',
       { property: 'og:image', content: 'https://serasome.com/images/og.jpg' }
-    ]);
+    ])
     pageData.frontmatter.head.push([
       'meta',
       { property: 'og:url', content: canonicalUrl }
-    ]);
+    ])
     pageData.frontmatter.head.push([
       'link',
       { rel: 'canonical', href: canonicalUrl }
-    ]);
+    ])
   },
   sitemap: {
     hostname: 'https://serasome.com'
@@ -302,4 +302,4 @@ export default defineConfig({
     }
   },
   outDir: './../dist'
-});
+})
