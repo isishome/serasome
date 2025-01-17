@@ -235,6 +235,16 @@ export default defineConfig({
                   docFooterText: "Sera's Quasar Framework"
                 }
               ]
+            },
+            {
+              text: 'Lightsail',
+              collapsed: true,
+              items: [
+                {
+                  text: 'SSH 기본포트 변경',
+                  link: '/programming/lightsail/port'
+                }
+              ]
             }
           ],
           '/it/': [
