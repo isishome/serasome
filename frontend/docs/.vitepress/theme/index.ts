@@ -16,7 +16,9 @@ export default {
           ? h(Adsense, {
               dataAdSlot: '7595465749',
               width: 728,
-              height: 90
+              height: 90,
+              dataAdFormat: 'horizontal',
+              dataFullWidthResponsive: false
             })
           : undefined
       },
@@ -27,7 +29,9 @@ export default {
           ? h(Adsense, {
               dataAdSlot: '7901796235',
               width: 160,
-              height: 600
+              height: 600,
+              dataAdFormat: 'vertical',
+              dataFullWidthResponsive: false
             })
           : undefined
         // https://vitepress.dev/guide/extending-default-theme#layout-slots
