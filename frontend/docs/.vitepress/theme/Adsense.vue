@@ -85,4 +85,14 @@ onMounted(() => {
   font-weight: 500;
   background-color: var(--vp-carbon-ads-bg-color);
 }
+
+.wrap:has(.ins[data-ad-status='unfilled']) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ads-wrap:has(.ins[data-ad-status='unfilled']) {
+  padding: 0;
+  background-color: inherit;
+}
 </style>

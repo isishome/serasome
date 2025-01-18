@@ -208,7 +208,7 @@ export default defineConfig({
             },
             {
               text: 'Vue.js',
-              collapsed: true,
+              collapsed: false,
               items: [{ text: '준비중', link: '/programming/vue/intro' }]
             },
             // {
@@ -227,7 +227,7 @@ export default defineConfig({
             // },
             {
               text: 'Quasar Framework',
-              collapsed: true,
+              collapsed: false,
               items: [
                 {
                   text: "Sera's Quasar Framework",
@@ -238,7 +238,7 @@ export default defineConfig({
             },
             {
               text: 'Lightsail',
-              collapsed: true,
+              collapsed: false,
               items: [
                 {
                   text: 'SSH 기본포트 변경',
@@ -250,7 +250,7 @@ export default defineConfig({
           '/it/': [
             {
               text: '레노버 리전 Y700 2세대',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: '소개', link: '/it/y700/intro' },
                 { text: '구성품 및 리뷰', link: '/it/y700/components' },
@@ -267,7 +267,7 @@ export default defineConfig({
             },
             {
               text: 'AULA F87 Pro',
-              collapsed: true,
+              collapsed: false,
               items: [
                 { text: '소개', link: '/it/f87pro/intro' },
                 { text: '구성품 및 리뷰', link: '/it/f87pro/components' }

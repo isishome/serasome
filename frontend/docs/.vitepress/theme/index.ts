@@ -9,7 +9,7 @@ export default {
   extends: DefaultTheme,
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      'doc-after': () => {
+      'doc-before': () => {
         return (!import.meta.env.SSR && window?.innerWidth
           ? window?.innerWidth
           : 0) < 1280
