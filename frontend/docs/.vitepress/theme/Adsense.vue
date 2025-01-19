@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, ref, onBeforeMount, onMounted, onUnmounted } from 'vue'
 
 declare global {
   interface Window {
@@ -8,6 +8,10 @@ declare global {
 }
 
 const props = defineProps({
+  dataAdClient: {
+    type: String,
+    default: 'ca-pub-5110777286519562'
+  },
   dataAdSlot: {
     type: String,
     default: null
@@ -27,9 +31,15 @@ const props = defineProps({
   dataFullWidthResponsive: {
     type: Boolean,
     default: null
+  },
+  repeat: {
+    type: Number,
+    default: 5
   }
 })
 
+let timer: NodeJS.Timeout
+const repeat = ref(0)
 const dataAdtest = computed(() =>
   import.meta.env.DEV || !!!props.dataAdSlot ? 'on' : null
 )
@@ -40,14 +50,33 @@ const style = computed(() =>
 )
 
 const render = () => {
-  if (!!!props.dataAdSlot) return
-  ;(window.adsbygoogle || []).push({})
+  repeat.value++
+  if (repeat.value > props.repeat) clearTimeout(timer)
+  else if (!!window?.adsbygoogle) (window.adsbygoogle || []).push({})
+  else
+    timer = setTimeout(() => {
+      render()
+    }, 400)
 }
 
+onBeforeMount(() => {
+  const adURL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${props.dataAdClient}`
+  const script = document.createElement('script')
+  script.src = adURL
+
+  script.async = true
+  script.crossOrigin = 'anonymous'
+
+  if (!document.head.querySelector(`script[src="${adURL}"]`))
+    document.head.appendChild(script)
+})
+
 onMounted(() => {
-  if (document.readyState !== 'complete')
-    window.addEventListener('load', render)
-  else render()
+  render()
+})
+
+onUnmounted(() => {
+  clearTimeout(timer)
 })
 </script>
 
@@ -57,7 +86,7 @@ onMounted(() => {
       <ins
         class="adsbygoogle"
         :style="style"
-        data-ad-client="ca-pub-5110777286519562"
+        :data-ad-client="dataAdClient"
         :data-ad-slot="dataAdSlot"
         :data-adtest="dataAdtest"
         :data-ad-format="dataAdFormat"

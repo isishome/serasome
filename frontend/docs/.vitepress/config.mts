@@ -56,14 +56,6 @@ if (prod) {
       'script',
       {},
       "window.dataLayer = window.dataLayer || [];\nfunction gtag(){ dataLayer.push(arguments); }\ngtag('js', new Date());\n\ngtag('config', 'G-CYSQREKHK7');"
-    ],
-    [
-      'script',
-      {
-        async: '',
-        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562',
-        crossorigin: 'anonymous'
-      }
     ]
   )
 }
