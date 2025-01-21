@@ -3,7 +3,7 @@ title: SSH 기본 포트 변경
 description: AWS Lightsail(ubuntu) 인스턴스의 기본 SSH 포트를 변경해 봅시다.
 ---
 
-# SSH 기본포트 변경
+# SSH 기본 포트 변경
 
 > [!info]
 > 사용 중인 인터넷 업체를 변경한 이후로 기존에 잘 접속되던 Lightsail SSH 연결이 되지 않는 문제가 발생했습니다.\

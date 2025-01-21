@@ -233,7 +233,7 @@ export default defineConfig({
               collapsed: false,
               items: [
                 {
-                  text: 'SSH 기본포트 변경',
+                  text: 'SSH 기본 포트 변경',
                   link: '/programming/lightsail/port'
                 }
               ]
