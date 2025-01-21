@@ -30,7 +30,6 @@ export default {
               dataAdSlot: '7901796235',
               width: 160,
               height: 600,
-              dataAdFormat: 'vertical',
               dataFullWidthResponsive: false
             })
           : undefined

@@ -1,5 +1,5 @@
 ---
-title: SSH 기본포트 변경
+title: SSH 기본 포트 변경
 description: AWS Lightsail(ubuntu) 인스턴스의 기본 SSH 포트를 변경해 봅시다.
 ---
 
