@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onBeforeMount, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
 declare global {
   interface Window {
@@ -58,18 +58,6 @@ const render = () => {
       render()
     }, 200)
 }
-
-onBeforeMount(() => {
-  const adURL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${props.dataAdClient}`
-  const script = document.createElement('script')
-  script.src = adURL
-
-  script.async = true
-  script.crossOrigin = 'anonymous'
-
-  if (!document.head.querySelector(`script[src="${adURL}"]`))
-    document.head.appendChild(script)
-})
 
 onMounted(() => {
   render()
