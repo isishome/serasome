@@ -9,8 +9,8 @@ export function useResize(debounceTime = 200) {
     if (timeoutId) clearTimeout(timeoutId)
 
     timeoutId = setTimeout(() => {
-      width.value = window.innerWidth
-      height.value = window.innerHeight
+      width.value = window?.innerWidth ?? 0
+      height.value = window?.innerHeight ?? 0
     }, debounceTime)
   }
 

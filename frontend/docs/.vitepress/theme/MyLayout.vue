@@ -45,43 +45,49 @@ watch(size, (val, old) => {
 <template>
   <Layout>
     <template #doc-before>
-      <Adsense
-        v-if="width < 1280"
-        justify="center"
-        :style="size"
-        data-ad-slot="7595465749"
-        :data-adtest="!prod"
-        data-ad-format="horizontal"
-        :data-full-width-responsive="false"
-        :key="`top-${topAdKey}`"
-      />
+      <ClientOnly>
+        <Adsense
+          v-if="width < 1280"
+          justify="center"
+          :style="size"
+          data-ad-slot="7595465749"
+          :data-adtest="!prod"
+          data-ad-format="horizontal"
+          :data-full-width-responsive="false"
+          :key="`top-${topAdKey}`"
+        />
+      </ClientOnly>
     </template>
     <template #aside-ads-before>
-      <Adsense
-        v-if="width >= 1280"
-        style="
-          display: inline-block;
-          width: 160px;
-          height: 600px;
-          margin-top: 36px;
-        "
-        data-ad-slot="7901796235"
-        :data-adtest="!prod"
-        :data-full-width-responsive="false"
-        :key="`right-${rightAdKey}`"
-      />
+      <ClientOnly>
+        <Adsense
+          v-if="width >= 1280"
+          style="
+            display: inline-block;
+            width: 160px;
+            height: 600px;
+            margin-top: 36px;
+          "
+          data-ad-slot="7901796235"
+          :data-adtest="!prod"
+          :data-full-width-responsive="false"
+          :key="`right-${rightAdKey}`"
+        />
+      </ClientOnly>
     </template>
     <template #doc-after>
-      <Adsense
-        v-if="width < 1280"
-        justify="center"
-        :style="sizeBottom"
-        data-ad-slot="2989257893"
-        :data-adtest="!prod"
-        data-ad-format="horizontal"
-        :data-full-width-responsive="true"
-        :key="`bottom-${bottomAdKey}`"
-      />
+      <ClientOnly>
+        <Adsense
+          v-if="width < 1280"
+          justify="center"
+          :style="sizeBottom"
+          data-ad-slot="2989257893"
+          :data-adtest="!prod"
+          data-ad-format="horizontal"
+          :data-full-width-responsive="true"
+          :key="`bottom-${bottomAdKey}`"
+        />
+      </ClientOnly>
     </template>
   </Layout>
 </template>
