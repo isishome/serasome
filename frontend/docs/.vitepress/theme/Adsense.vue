@@ -35,11 +35,6 @@ const repeat = ref(0)
 const dataAdtest = computed(() =>
   import.meta.env.DEV || !!!props.dataAdSlot ? 'on' : null
 )
-const style = computed(() =>
-  props.width && props.height
-    ? `display: block; width: ${props.width}px; height: ${props.height}px`
-    : null
-)
 
 const render = () => {
   repeat.value++

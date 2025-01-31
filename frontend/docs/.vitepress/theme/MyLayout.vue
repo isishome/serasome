@@ -5,46 +5,46 @@ import Adsense from './Adsense.vue'
 import { useResize } from './useResize'
 
 const { Layout } = DefaultTheme
-// const prod = process.env.NODE_ENV === 'production'
-// const { width } = useResize()
+const prod = process.env.NODE_ENV === 'production'
+const { width } = useResize()
 
-// const topAdKey = ref<number>(0)
-// const bottomAdKey = ref<number>(0)
-// const rightAdKey = ref<number>(0)
+const topAdKey = ref<number>(0)
+const bottomAdKey = ref<number>(0)
+const rightAdKey = ref<number>(0)
 
-// const size = computed(() =>
-//   width.value < 320
-//     ? 'width:300px;max-height:100px;'
-//     : width.value < 468
-//     ? 'width:320px;max-height:100px;'
-//     : width.value < 688
-//     ? 'width:468px;height:60px;'
-//     : 'width:688px;height:90px;'
-// )
-// const sizeBottom = computed(() =>
-//   width.value < 300
-//     ? 'display:inline-block;width:250px;height:250px;'
-//     : width.value < 336
-//     ? 'display:inline-block;width:300px;height:250px;'
-//     : width.value < 468
-//     ? 'display:inline-block;width:336px;height:280px;'
-//     : width.value < 688
-//     ? 'display:inline-block;width:468px;height:60px;'
-//     : 'display:inline-block;width:688px;height:90px;'
-// )
+const size = computed(() =>
+  width.value < 320
+    ? 'width:300px;max-height:100px;'
+    : width.value < 468
+    ? 'width:320px;max-height:100px;'
+    : width.value < 688
+    ? 'width:468px;height:60px;'
+    : 'width:688px;height:90px;'
+)
+const sizeBottom = computed(() =>
+  width.value < 300
+    ? 'display:inline-block;width:250px;height:250px;'
+    : width.value < 336
+    ? 'display:inline-block;width:300px;height:250px;'
+    : width.value < 468
+    ? 'display:inline-block;width:336px;height:280px;'
+    : width.value < 688
+    ? 'display:inline-block;width:468px;height:60px;'
+    : 'display:inline-block;width:688px;height:90px;'
+)
 
-// watch(size, (val, old) => {
-//   if (val !== old) {
-//     topAdKey.value++
-//     bottomAdKey.value++
-//     rightAdKey.value++
-//   }
-// })
+watch(size, (val, old) => {
+  if (val !== old) {
+    topAdKey.value++
+    bottomAdKey.value++
+    rightAdKey.value++
+  }
+})
 </script>
 
 <template>
   <Layout>
-    <!-- <template #doc-before>
+    <template #doc-before>
       <div class="flex-center">
         <Adsense
           v-if="width < 1280"
@@ -83,7 +83,7 @@ const { Layout } = DefaultTheme
           :key="`bottom-${bottomAdKey}`"
         />
       </div>
-    </template> -->
+    </template>
   </Layout>
 </template>
 <style scoped="module">
