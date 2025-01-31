@@ -44,10 +44,10 @@ watch(size, (val, old) => {
 
 <template>
   <Layout>
-    <template #doc-before>
+    <!-- <template #doc-before>
       <div class="flex-center">
         <Adsense
-          v-show="width < 1280"
+          v-if="width < 1280"
           justify="center"
           :style="size"
           data-ad-slot="7595465749"
@@ -61,7 +61,7 @@ watch(size, (val, old) => {
     <template #aside-ads-before>
       <div class="flex-right">
         <Adsense
-          v-show="width >= 1280"
+          v-if="width >= 1280"
           style="display: inline-block; width: 160px; height: 600px"
           data-ad-slot="7901796235"
           :data-adtest="!prod"
@@ -73,7 +73,7 @@ watch(size, (val, old) => {
     <template #doc-after>
       <div class="flex-center">
         <Adsense
-          v-show="width < 1280"
+          v-if="width < 1280"
           justify="center"
           :style="sizeBottom"
           data-ad-slot="2989257893"
@@ -83,7 +83,7 @@ watch(size, (val, old) => {
           :key="`bottom-${bottomAdKey}`"
         />
       </div>
-    </template>
+    </template> -->
   </Layout>
 </template>
 <style scoped="module">
