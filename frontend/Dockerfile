@@ -1,5 +1,5 @@
-# alpine 16 버전 기반
-FROM node:16-alpine
+# alpine 18 버전 기반
+FROM node:18-alpine
 
 # 작업 디렉토리
 WORKDIR /app
