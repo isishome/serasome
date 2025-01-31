@@ -1,3 +1,9 @@
+<script lang="ts">
+export default {
+  inheritAttrs: false
+}
+</script>
+
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 
@@ -16,14 +22,6 @@ const props = defineProps({
     type: String,
     default: null
   },
-  width: {
-    type: [Number, String],
-    default: null
-  },
-  height: {
-    type: [Number, String],
-    default: null
-  },
   dataAdFormat: {
     type: String,
     default: null
@@ -31,6 +29,10 @@ const props = defineProps({
   dataFullWidthResponsive: {
     type: Boolean,
     default: null
+  },
+  justify: {
+    type: String,
+    default: 'start'
   },
   repeat: {
     type: Number,
@@ -69,37 +71,35 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="wrap">
-    <div class="ads-wrap">
-      <ins
-        class="adsbygoogle"
-        :style="style"
-        :data-ad-client="dataAdClient"
-        :data-ad-slot="dataAdSlot"
-        :data-adtest="dataAdtest"
-        :data-ad-format="dataAdFormat"
-        :data-full-width-responsive="dataFullWidthResponsive"
-      ></ins>
-    </div>
+  <div class="wrap" :style="`justify-content: ${justify}`">
+    <ins
+      v-bind="$attrs"
+      class="adsbygoogle ins"
+      :data-ad-client="dataAdClient"
+      :data-ad-slot="dataAdSlot"
+      :data-adtest="dataAdtest"
+      :data-ad-format="dataAdFormat"
+      :data-full-width-responsive="dataFullWidthResponsive"
+    ></ins>
   </div>
 </template>
 
 <style scoped="module">
 .wrap {
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin-top: 0;
+  margin-bottom: 36px;
+  display: flex;
 }
 
-.ads-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 32px;
-  border-radius: 12px;
-  text-align: center;
-  line-height: 18px;
-  font-size: 12px;
-  font-weight: 500;
+@media (max-width: 600px) {
+  .wrap {
+    margin-bottom: 24px;
+  }
+}
+
+.ins {
+  position: relative;
+  min-height: 50px;
   background-color: var(--vp-carbon-ads-bg-color);
 }
 
