@@ -1,9 +1,3 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false
-}
-</script>
-
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 
@@ -29,10 +23,6 @@ const props = defineProps({
   dataFullWidthResponsive: {
     type: Boolean,
     default: null
-  },
-  justify: {
-    type: String,
-    default: 'start'
   },
   repeat: {
     type: Number,
@@ -71,44 +61,29 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="wrap" :style="`justify-content: ${justify}`">
-    <ins
-      v-bind="$attrs"
-      class="adsbygoogle ins"
-      :data-ad-client="dataAdClient"
-      :data-ad-slot="dataAdSlot"
-      :data-adtest="dataAdtest"
-      :data-ad-format="dataAdFormat"
-      :data-full-width-responsive="dataFullWidthResponsive"
-    ></ins>
-  </div>
+  <ins
+    class="adsbygoogle ins"
+    :data-ad-client="dataAdClient"
+    :data-ad-slot="dataAdSlot"
+    :data-adtest="dataAdtest"
+    :data-ad-format="dataAdFormat"
+    :data-full-width-responsive="dataFullWidthResponsive"
+  ></ins>
 </template>
 
 <style scoped="module">
-.wrap {
-  margin-top: 0;
-  margin-bottom: 36px;
-  display: flex;
-}
-
-@media (max-width: 600px) {
-  .wrap {
-    margin-bottom: 24px;
-  }
-}
-
 .ins {
   position: relative;
   min-height: 50px;
   background-color: var(--vp-carbon-ads-bg-color);
 }
 
-.wrap:has(.ins[data-ad-status='unfilled']) {
+.ins[data-ad-status='unfilled'] {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.ads-wrap:has(.ins[data-ad-status='unfilled']) {
+.ins[data-ad-status='unfilled'] {
   padding: 0;
   background-color: inherit;
 }

@@ -45,9 +45,9 @@ watch(size, (val, old) => {
 <template>
   <Layout>
     <template #doc-before>
-      <ClientOnly>
+      <div class="flex-center">
         <Adsense
-          v-if="width < 1280"
+          v-show="width < 1280"
           justify="center"
           :style="size"
           data-ad-slot="7595465749"
@@ -56,29 +56,24 @@ watch(size, (val, old) => {
           :data-full-width-responsive="false"
           :key="`top-${topAdKey}`"
         />
-      </ClientOnly>
+      </div>
     </template>
     <template #aside-ads-before>
-      <ClientOnly>
+      <div class="flex-right">
         <Adsense
-          v-if="width >= 1280"
-          style="
-            display: inline-block;
-            width: 160px;
-            height: 600px;
-            margin-top: 36px;
-          "
+          v-show="width >= 1280"
+          style="display: inline-block; width: 160px; height: 600px"
           data-ad-slot="7901796235"
           :data-adtest="!prod"
           :data-full-width-responsive="false"
           :key="`right-${rightAdKey}`"
         />
-      </ClientOnly>
+      </div>
     </template>
     <template #doc-after>
-      <ClientOnly>
+      <div class="flex-center">
         <Adsense
-          v-if="width < 1280"
+          v-show="width < 1280"
           justify="center"
           :style="sizeBottom"
           data-ad-slot="2989257893"
@@ -87,7 +82,24 @@ watch(size, (val, old) => {
           :data-full-width-responsive="true"
           :key="`bottom-${bottomAdKey}`"
         />
-      </ClientOnly>
+      </div>
     </template>
   </Layout>
 </template>
+<style scoped="module">
+.flex-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 600px) {
+  .flex-center {
+    margin-bottom: 16px;
+  }
+}
+
+.flex-right {
+  margin-top: 32px;
+}
+</style>
