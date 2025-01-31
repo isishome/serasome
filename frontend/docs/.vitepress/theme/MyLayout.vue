@@ -22,7 +22,7 @@ const size = computed(() =>
     : 'width:688px;height:90px;'
 )
 const sizeBottom = computed(() =>
-  width < 300
+  width.value < 300
     ? 'display:inline-block;width:250px;height:250px;'
     : width.value < 336
     ? 'display:inline-block;width:300px;height:250px;'
