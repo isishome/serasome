@@ -1,25 +1,25 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 export function useResize(debounceTime = 200) {
-  const width = ref(window?.innerWidth ?? 0)
-  const height = ref(window?.innerHeight ?? 0)
+  const width = ref(import.meta.env.SSR ? 0 : window.innerWidth)
+  const height = ref(import.meta.env.SSR ? 0 : window.innerHeight)
   let timeoutId: NodeJS.Timeout
 
   const updateSize = () => {
     if (timeoutId) clearTimeout(timeoutId)
 
     timeoutId = setTimeout(() => {
-      width.value = window?.innerWidth ?? 0
-      height.value = window?.innerHeight ?? 0
+      width.value = import.meta.env.SSR ? 0 : window.innerWidth
+      height.value = import.meta.env.SSR ? 0 : window.innerHeight
     }, debounceTime)
   }
 
   onMounted(() => {
-    window.addEventListener('resize', updateSize)
+    if (!import.meta.env.SSR) window.addEventListener('resize', updateSize)
   })
 
   onUnmounted(() => {
-    window.removeEventListener('resize', updateSize)
+    if (!import.meta.env.SSR) window.removeEventListener('resize', updateSize)
     if (timeoutId) clearTimeout(timeoutId)
   })
 
