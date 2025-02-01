@@ -76,7 +76,7 @@ onMounted(() => {
       </div>
     </template>
     <template #doc-after>
-      <div class="flex-center">
+      <div class="flex-center" style="margin-top: 16px">
         <Adsense
           v-if="loaded && width < 1280"
           justify="center"
