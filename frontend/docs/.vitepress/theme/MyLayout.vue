@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import Adsense from './Adsense.vue'
 import { useResize } from './useResize'
@@ -8,6 +8,7 @@ const { Layout } = DefaultTheme
 const prod = process.env.NODE_ENV === 'production'
 const { width } = useResize()
 
+const loaded = ref(false)
 const topAdKey = ref<number>(0)
 const bottomAdKey = ref<number>(0)
 const rightAdKey = ref<number>(0)
@@ -40,6 +41,10 @@ watch(size, (val, old) => {
     rightAdKey.value++
   }
 })
+
+onMounted(() => {
+  loaded.value = true
+})
 </script>
 
 <template>
@@ -47,7 +52,7 @@ watch(size, (val, old) => {
     <template #doc-before>
       <div class="flex-center">
         <Adsense
-          v-if="width < 1280"
+          v-if="loaded && width < 1280"
           justify="center"
           :style="size"
           data-ad-slot="7595465749"
@@ -61,7 +66,7 @@ watch(size, (val, old) => {
     <template #aside-ads-before>
       <div class="flex-right">
         <Adsense
-          v-if="width >= 1280"
+          v-if="loaded && width >= 1280"
           style="display: inline-block; width: 160px; height: 600px"
           data-ad-slot="7901796235"
           :data-adtest="!prod"
@@ -73,7 +78,7 @@ watch(size, (val, old) => {
     <template #doc-after>
       <div class="flex-center">
         <Adsense
-          v-if="width < 1280"
+          v-if="loaded && width < 1280"
           justify="center"
           :style="sizeBottom"
           data-ad-slot="2989257893"
