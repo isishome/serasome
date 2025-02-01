@@ -52,7 +52,7 @@ onMounted(() => {
     <template #doc-before>
       <div class="flex-center">
         <Adsense
-          v-if="loaded && width < 1280"
+          v-if="loaded"
           justify="center"
           :style="size"
           data-ad-slot="7595465749"
