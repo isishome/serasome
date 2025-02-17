@@ -50,8 +50,8 @@
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
   --vp-c-brand-1: #0c9cb6;
-  --vp-c-brand-2: #0AAAA7;
-  --vp-c-brand-3: #088E8B;
+  --vp-c-brand-2: #0aaaa7;
+  --vp-c-brand-3: #088e8b;
   --vp-c-brand-soft: rgb(15, 200, 251, 0.16);
 
   --vp-c-tip-1: var(--vp-c-brand-1);
@@ -71,9 +71,9 @@
 }
 
 .dark {
-  --vp-c-brand-1: #0CE6DF;
-  --vp-c-brand-2: #0ABAB5;
-  --vp-c-brand-3: #088E8B;
+  --vp-c-brand-1: #0ce6df;
+  --vp-c-brand-2: #0abab5;
+  --vp-c-brand-3: #088e8b;
   --vp-c-brand-soft: rgb(15, 255, 251, 0.16);
 }
 
@@ -98,12 +98,12 @@
  * -------------------------------------------------------------------------- */
 
 :lang(ko) {
-  --vp-font-family-base: "Noto Sans KR", sans-serif;
+  --vp-font-family-base: 'Noto Sans KR', sans-serif;
   word-break: keep-all;
 }
 
 :lang(en) {
-  --vp-font-family-base: "Roboto", sans-serif;
+  --vp-font-family-base: 'Roboto', sans-serif;
 }
 
 /**
@@ -112,30 +112,37 @@
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg,
-      #0080fe 30%,
-      #52cea3);
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #0080fe 30%,
+    #52cea3
+  );
 
-  --vp-home-hero-image-background-image: linear-gradient(-45deg,
-      #0080fe 50%,
-      #52cea3 50%);
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #0080fe 50%,
+    #52cea3 50%
+  );
   --vp-home-hero-image-filter: blur(44px);
 }
 
 .dark {
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg,
-      #0080fe 30%,
-      #3d9778);
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #0080fe 30%,
+    #3d9778
+  );
 
-  --vp-home-hero-image-background-image: linear-gradient(-45deg,
-      #0080fe 50%,
-      #3d9778 50%);
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #0080fe 50%,
+    #3d9778 50%
+  );
 }
 
 .vp-doc img.center {
   margin: 0 auto;
 }
-
 
 .vp-doc img:not(.no-border) {
   border-radius: 24px;
@@ -149,7 +156,7 @@
   margin: 0 0 40px 0;
 }
 
-.vp-doc li+li {
+.vp-doc li + li {
   margin-top: 2px;
 }
 
@@ -162,6 +169,25 @@
   background-color: transparent !important;
   border: none !important;
   padding: 0;
+}
+
+:root {
+  --vp-layout-max-width: 1480px;
+}
+
+.VPDoc:not(.has-sidebar) .container {
+  max-width: 1584px !important;
+  max-width: 1144px !important;
+}
+
+.VPDoc:not(.has-sidebar) .content {
+  max-width: 1264px !important;
+  max-width: 824px !important;
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: 1168px !important;
+  max-width: 728px !important;
 }
 
 .vp-doc table video {

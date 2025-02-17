@@ -3,10 +3,12 @@ import { ref, computed, watch, onMounted } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import Adsense from './Adsense.vue'
 import { useResize } from './useResize'
+import { useRoute } from 'vitepress'
 
 const { Layout } = DefaultTheme
 const prod = process.env.NODE_ENV === 'production'
 const { width } = useResize()
+const route = useRoute()
 
 const loaded = ref(false)
 const topAdKey = ref<number>(0)
@@ -18,9 +20,9 @@ const size = computed(() =>
     ? 'width:300px;max-height:100px;'
     : width.value < 468
     ? 'width:320px;max-height:100px;'
-    : width.value < 688
+    : width.value < 728
     ? 'width:468px;height:60px;'
-    : 'width:688px;height:90px;'
+    : 'width:728px;height:90px;'
 )
 const sizeBottom = computed(() =>
   width.value < 300
@@ -29,13 +31,14 @@ const sizeBottom = computed(() =>
     ? 'display:inline-block;width:300px;height:250px;'
     : width.value < 468
     ? 'display:inline-block;width:336px;height:280px;'
-    : width.value < 688
+    : width.value < 728
     ? 'display:inline-block;width:468px;height:60px;'
-    : 'display:inline-block;width:688px;height:90px;'
+    : 'display:inline-block;width:728px;height:90px;'
 )
+const routeName = computed(() => route.path)
 
-watch(size, (val, old) => {
-  if (val !== old) {
+watch([size, routeName], ([valSize, valName], [oldSize, oldName]) => {
+  if (valSize !== oldSize || valName !== oldName) {
     topAdKey.value++
     bottomAdKey.value++
     rightAdKey.value++
