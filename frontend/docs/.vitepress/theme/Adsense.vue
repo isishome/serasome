@@ -37,7 +37,7 @@ const render = () => {
   else
     timer = setTimeout(() => {
       render()
-    }, 400)
+    }, 200)
 }
 
 onMounted(() => {
