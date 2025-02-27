@@ -211,8 +211,13 @@ export default defineConfig({
             },
             {
               text: 'Vue.js',
-              collapsed: false,
-              items: [{ text: '준비중', link: '/programming/vue/intro' }]
+              collapsed: true,
+              items: [
+                {
+                  text: '빠른 시작',
+                  link: '/programming/vue/start'
+                }
+              ]
             },
             // {
             //   text: 'Vue Router',
@@ -312,6 +317,10 @@ export default defineConfig({
   markdown: {
     image: {
       lazyLoading: true
+    },
+    theme: {
+      light: 'github-dark',
+      dark: 'github-dark'
     }
   },
   outDir: './../dist'
