@@ -33,7 +33,7 @@ $ sudo chown 1000 /var/jenkins_home
 4. 이제 Jenkins를 컨테이너화(실행)합니다.
 
 ```shell
-$ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-shares="1024" --memory="1g" --memory-swap="1.5g" --publish 8080:8080 --volume /var/jenkins_home:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --env TZ=Asiz/Seoul --env JAVA_OPTS="-Xms512m -Xmx1024m" --name jenkins jenkins/jenkins:lts-jdk17
+$ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-shares="1024" --memory="1g" --memory-swap="1.5g" --publish 8080:8080 --volume /var/jenkins_home:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --env TZ=Asiz/Seoul --name jenkins jenkins/jenkins:lts-jdk17
 ```
 
 | 옵션               | 설명                                                            |
