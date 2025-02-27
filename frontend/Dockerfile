@@ -8,4 +8,4 @@ WORKDIR /app
 COPY . .
 
 # 의존성 설치 및 프로젝트 빌드
-RUN npm install && npm run docs:build && npm cache clean --force
+RUN npm install && npm run docs:build
