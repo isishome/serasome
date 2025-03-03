@@ -4,34 +4,42 @@ description: 프로세스에 전달되는 SIGTERM SIGINT 신호를 이용해 프
 ---
 
 # SIGTERM SIGINT
+
 다른 컨테이너들은 **무중단 배포**가 이상 없이 성공하는데 `tradurs-back` 컨테이너는 자동 배포 시 구동 후 **일정 시간이 지나면 중지돼버리는 문제가 발생했습니다**.
 
 `docker logs` 명령으로 해당 컨테이너 로그를 확인했습니다.
-```shell
+
+```sh
 $ sudo docker logs 컨테이너
 ```
+
 ```console
 fatal: false,
 errno: 45028,
 sqlState: 'HY000',
-code: 'ER_GET_CONNECTION_TIMEOUT' 
+code: 'ER_GET_CONNECTION_TIMEOUT'
 Error: retrieve connection from pool timeout
 ```
-**mariadb**의 `pool`이 일정 시간마다 timeout이 발생하고 있었습니다. 
+
+**mariadb**의 `pool`이 일정 시간마다 timeout이 발생하고 있었습니다.
+
 - ❌ **mariadb 미들웨어**의 `acquireTimeout` 설정값을 늘려줘도 같은 시간마다 timeout 발생했습니다.
-단순히 `pool` 연결 시간문제가 아니라 **MariaDB 서버**가 연결된 `pool`을 강제로 끊어버리고 있었습니다.
+  단순히 `pool` 연결 시간문제가 아니라 **MariaDB 서버**가 연결된 `pool`을 강제로 끊어버리고 있었습니다.
 
 - :heavy_check_mark: Nginx에서 **tradurs-back** 컨테이너의 설정 부분을 주석 처리하고 컨테이너를 `restart` 명령으로 재시작 했습니다. **컨테이너가 당연하게(?) 중지되지 않고 정상적으로 동작합니다.**
-    - 내부적인 연결에는 문제가 없고, Nginx를 통해 외부와 연결될 때만 문제가 발생하고 있습니다.
-    - 해당 상태(외부와 연결이 끊긴 상태)에서 Nginx를 **tradurs-back** 컨테이너와 연결하면 다시 timeout 문제가 발생합니다.
+  - 내부적인 연결에는 문제가 없고, Nginx를 통해 외부와 연결될 때만 문제가 발생하고 있습니다.
+  - 해당 상태(외부와 연결이 끊긴 상태)에서 Nginx를 **tradurs-back** 컨테이너와 연결하면 다시 timeout 문제가 발생합니다.
 
 **MariaDB 서버**에 접속해 `show processlist;` 명령으로 connection pool 목록을 확인해 보기로 했습니다.
-```shell
+
+```sh
 $ sudo mariadb
 ```
-```shell
+
+```sh
 MariaDB > show processlist;
 ```
+
 ```console
 +----+--------+--------------+---------+---------+-------+-------+------+----------+
 | Id | User   | Host         | db      | Command | Time  | State | Info | Progress |
@@ -55,14 +63,17 @@ MariaDB > show processlist;
 <br />
 
 Node.js의 `index.js`에 아래와 같은 **SIGTERM**과 **SIGINT** 신호 구문을 추가했습니다.
+
 > [!info] SIGTERM, SIGINT
+>
 > - **SIGTERM** : 프로세스에 전달되는 종료 신호의 하나로 **kill** 명령을 내릴 때 전송됩니다.
 > - **SIGINT** : 프로세스에 전달되는 종료 신호의 하나로 **Ctrl + C**를 누를 전송됩니다.
+
 ```js
 // connections
 const connections = new Set()
 
-httpServer.on('connection', connection => {
+httpServer.on('connection', (connection) => {
   connections.add(connection)
   connection.on('close', (r) => {
     connections.delete(connection)
@@ -74,8 +85,7 @@ const disconnect = async () => {
   console.log('All socket instances disconnect')
   try {
     io.disconnectSockets(true)
-  }
-  catch (e) {
+  } catch (e) {
     console.log(`Failed to disconnect socket instances : ${e}`)
   }
 
@@ -99,12 +109,14 @@ const shutdownHandler = async () => {
 
   setTimeout(async () => {
     await disconnect()
-    console.error('Could not close connections in time, forcefully shutting down')
+    console.error(
+      'Could not close connections in time, forcefully shutting down'
+    )
     process.exit(1)
   }, 10000)
 
-  connections.forEach(c => c.end())
-  setTimeout(() => connections.forEach(c => c.destroy()), 5000)
+  connections.forEach((c) => c.end())
+  setTimeout(() => connections.forEach((c) => c.destroy()), 5000)
 }
 
 // process kill signal
@@ -116,13 +128,15 @@ process.on('SIGINT', shutdownHandler)
 1. 일정 시간(5000ms) 이후 연결된 **connection을 destroy**
 1. 일정 시간(10000ms) 이후에도 http close가 완료되지 않을 경우 **기존 http 연결 강제 닫기**
 1. **socket 연결 끊기**
-1. **mariadb pool 해제** 
+1. **mariadb pool 해제**
 
 프로세스에 `SIGTERM`과 `SIGINT` 신호를 받았을 동작하도록 핸들러를 연결해 주었습니다.
 
 > [!tip] docker stop
 > docker stop 명령으로 `SIGTERM`과 `SIGINT` 신호를 보내더라도 **Graceful Shutdown**이 완료되기 전에 컨테이너가 종료되어 버리는 경우
-> ```shell
+>
+> ```sh
 > $ docker stop --time 60
 > ```
+>
 > stop 명령 옵션의 `--time`을 사용하여 대기 시간을 지정해 주면 최소 설정된 시간(초) 동안 컨테이너 종료 프로세스가 실행되도록 기다려줍니다.

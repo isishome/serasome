@@ -1,5 +1,5 @@
 ---
-title: 빠른 시작
+title: Vue.js 빠른 시작
 decscription: Vue.js를 시작하기 위해 애플리케이션을 만들어봅시다.
 ---
 
@@ -65,7 +65,10 @@ Done. Now run:
 **본인이 원하는 프로젝트 환경에 맞게 설정 및 설치 여부를 선택하면 됩니다.**
 :::
 
-프로젝트 폴더가 생성되면 해당 폴더로 이동한 후 `npm install`을 통해 의존성 모듈들을 설치해 줍니다.\
+프로젝트 폴더가 생성되면 해당 폴더로 이동한 후 `npm install`을 통해 의존성 모듈들을 설치해 줍니다.
+
+<br />
+
 설치가 완료되면 `npm run dev`를 실행하여 개발 서버를 시작합니다.
 
 ```sh
@@ -79,6 +82,8 @@ Done. Now run:
 
 ```
 
+<br />
+
 브라우저에서 **http\://localhost:5173** 주소로 접속해 봅시다.
 
 | ![Vue 애플리케이션 만들기](./images/start/01.webp){:class='image'} |
@@ -86,3 +91,26 @@ Done. Now run:
 |                _Vue 애플리케이션_{:class='caption'}                |
 
 Vue 애플리케이션 준비가 완료되었습니다!
+
+최신 Vue 애플리케이션 프로젝트에서는 **Vue DevTools v7.7.2**와 **Toggle Component Inspector**가 기본적으로 포함됩니다.\
+화면 중앙 하단에 두 개의 아이콘이 표시됩니다.
+
+| ![Vue 애플리케이션 만들기](./images/start/02.webp){:class='image'} |
+| :----------------------------------------------------------------: |
+|   _Vue DevTools와 Toggle Component Inspector_{:class='caption'}    |
+
+| ![Vue 애플리케이션 만들기](./images/start/03.webp){:class='image'} |
+| :----------------------------------------------------------------: |
+|                  _Vue DevTools_{:class='caption'}                  |
+
+| ![Vue 애플리케이션 만들기](./images/start/04.webp){:class='image'} |
+| :----------------------------------------------------------------: |
+|           _Toggle Component Inspector_{:class='caption'}           |
+
+**Toggle Component Inspector** 아이콘을 선택하고 페이지의 레이아웃 특정 영역을 선택하면 `Visual Studio Code`의 해당 코드 위치로 이동됩니다.
+
+| ![Vue 애플리케이션 만들기](./images/start/05.webp){:class='image'} |
+| :----------------------------------------------------------------: |
+|           _Toggle Component Inspector_{:class='caption'}           |
+
+개발 과정에서 상당한 편의성을 제공하는 기능이 될 것으로 보입니다.

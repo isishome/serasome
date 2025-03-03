@@ -56,7 +56,7 @@ CMD ["/bin/hello"]
 
 Dockerfile만 있으면 됩니다. 별도의 빌드 스크립트 없이 Docker 빌드를 실행하기만 하면 됩니다.
 
-```shell
+```sh
 $ docker build -t hello .
 ```
 
@@ -92,7 +92,7 @@ CMD ["/bin/hello"]
 
 이미지를 빌드할 때 반드시 모든 스테이지를 포함한 전체 Dockerfile을 빌드할 필요는 없습니다. 대상 빌드 스테이지를 지정할 수 있습니다. 다음 명령은 기존 Dockerfile을 사용하고 있지만 build라는 스테이지에서 중지한다고 가정합니다.
 
-```shell
+```sh
 $ docker build --target build -t hello .
 ```
 

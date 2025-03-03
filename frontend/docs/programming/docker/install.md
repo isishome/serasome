@@ -29,7 +29,7 @@ Docker Desktop은 아래와 같은 환경에서 설치가 가능합니다.
 Windows에서 Linux 배포를 설치하려면 먼저 "Linux용 Windows 하위 시스템" 옵션 기능을 사용하도록 설정합니다.\
 PowerShell을 <b>관리자 권한(시작 메뉴 > PowerShell >에서 관리자 권한으로 실행 >을 마우스 오른쪽 단추로 클릭)</b>으로 열고 다음 명령을 입력합니다.
 
-```shell
+```sh
 > dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
@@ -53,7 +53,7 @@ WSL 2로 업데이트하려면 Windows 10을 실행해야 합니다.
 WSL 2를 설치하려면 먼저 Virtual Machine 플랫폼 옵션 기능을 사용하도록 설정해야 합니다. 이 기능을 사용하려면 머신에 [가상화 기능](https://learn.microsoft.com/ko-kr/windows/wsl/troubleshooting#error-0x80370102-the-virtual-machine-could-not-be-started-because-a-required-feature-is-not-installed)이 필요합니다.
 PowerShell을 관리자 권한으로 열어 실행합니다.
 
-```shell
+```sh
 > dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
@@ -80,7 +80,7 @@ Linux 커널 업데이트 패키지는 Windows 운영 체제 이미지 내에서
 
 PowerShell을 열고 이 명령을 실행하여 새 Linux 배포를 설치할 때 WSL 2를 기본 버전으로 설정합니다.
 
-```shell
+```sh
 > wsl --set-default-version 2
 ```
 

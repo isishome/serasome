@@ -16,13 +16,13 @@ description: Docker가 설치된 호스트에 Jenkins 이미지를 이용해 컨
 
 2. 다음 명령을 실행해 `jenkins/jenkins:lts-jdk17` 이미지를 가져옵니다.
 
-```shell
+```sh
 $ sudo docker image pull jenkins/jenkins:lts-jdk17
 ```
 
 3. Jenkins와 연동할 호스트 볼륨의 경로를 미리 생성하고 소유자를 변경합니다.
 
-```shell
+```sh
 $ sudo mkdir /var/jenkins_home
 $ sudo chown 1000 /var/jenkins_home
 ```
@@ -32,7 +32,7 @@ $ sudo chown 1000 /var/jenkins_home
 
 4. 이제 Jenkins를 컨테이너화(실행)합니다.
 
-```shell
+```sh
 $ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-shares="1024" --memory="1g" --memory-swap="1.5g" --publish 8080:8080 --volume /var/jenkins_home:/var/jenkins_home --volume /var/run/docker.sock:/var/run/docker.sock --env TZ=Asiz/Seoul --name jenkins jenkins/jenkins:lts-jdk17
 ```
 
@@ -56,7 +56,7 @@ $ sudo docker container run --detach --restart always --cpuset-cpus="1" --cpu-sh
 
 5. Jenkins 컨테이너가 정상적으로 구동되고 있는지 확인해봅시다.
 
-```shell
+```sh
 $ sudo docker ps
 
 CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS  PORTS   NAMES
@@ -67,7 +67,7 @@ CONTAINER ID    IMAGE   COMMAND     CREATED     STATUS  PORTS   NAMES
 
 1. 구동 중인 Jenkins 컨테이너 Shell에 접속합니다.
 
-```shell
+```sh
 $ sudo docker exec -itu 0 [Jenkins 컨테이너 아이디] /bin/bash
 ```
 
@@ -86,7 +86,7 @@ $ sudo docker exec -itu 0 [Jenkins 컨테이너 아이디] /bin/bash
 3. Jenkins에 Docker를 설치합니다.\
    Jenkins 이미지는 **Debian 환경**으로 만들어졌기 때문에 Debian 환경에 맞는 Docker를 설치해야 합니다.
 
-```shell
+```sh
 $ apt-get update
 $ apt-get install ca-certificates curl
 $ install -m 0755 -d /etc/apt/keyrings
@@ -100,7 +100,7 @@ $ apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin doc
 4. `docker` 그룹을 추가하고 Jenkins 사용자에게 `docker` 그룹의 권한을 줍니다.\
    위에서 설명한 `/var/run/docker.sock` 소유자도 변경해줘야 합니다.
 
-```shell
+```sh
 $ groupadd -f docker
 $ usermod -aG docker jenkins
 $ chown root:docker /var/run/docker.sock
@@ -108,7 +108,7 @@ $ chown root:docker /var/run/docker.sock
 
 5. Jenkins 컨테이너 접속을 종료하고 호스트 환경으로 돌아와 Jenkins를 재시작 합니다.
 
-```shell
+```sh
 $ sudo docker restart [Jenkins 컨테이너 아이디]
 ```
 
@@ -131,7 +131,7 @@ $ sudo docker restart [Jenkins 컨테이너 아이디]
 2. Jenkins 서비스 접속이 처음인 경우 생성된 관리자 계정이 없기 때문에 소유자가 맞는지 확인하는 절차가 필요합니다.\
    Jenkins 컨테이너의 로그 명령을 실행하여 **소유자 확인용 비밀번호**를 확인해 봅시다.
 
-```shell
+```sh
 $ sudo docker logs [Jenkins 컨테이너 아이디]
 ```
 

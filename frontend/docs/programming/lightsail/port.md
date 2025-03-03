@@ -45,7 +45,7 @@ IPv4 방화벽에 **+ 규칙 추가**를 선택합니다.
 
 이제 AWS에서 제공하는 브라우저 전용 SSH로 접속합니다.
 
-```shell
+```sh
 $> sudo vi /etc/ssh/sshd_config
 ```
 
@@ -75,7 +75,7 @@ Port 9090 // [!code ++]
 
 설정 파일을 저장한 후 SSH 서비스를 재시작합니다.
 
-```shell
+```sh
 $> sudo service sshd restart
 ```
 
