@@ -1,5 +1,6 @@
 ---
-title: Vue.js 빠른 시작
+title: Vue.js
+titleTemplate: 빠른 시작
 decscription: Vue.js를 시작하기 위해 애플리케이션을 만들어봅시다.
 ---
 

@@ -1,5 +1,6 @@
 ---
-title: 서버 장애 그리고 해결 과정
+title: Docker로 웹서버 구축하기
+titleTemplate: 서버 장애 그리고 해결 과정
 description: Docker로 구축한 웹서버에서 경험한 장애와 그 해결 과정 몇가지를 공유합니다.
 ---
 

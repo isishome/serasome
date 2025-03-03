@@ -216,6 +216,10 @@ export default defineConfig({
                 {
                   text: '빠른 시작',
                   link: '/programming/vue/start'
+                },
+                {
+                  text: '반응형 기초',
+                  link: '/programming/vue/reactive'
                 }
               ]
             },

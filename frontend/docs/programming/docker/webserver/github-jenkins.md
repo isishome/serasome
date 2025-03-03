@@ -1,5 +1,6 @@
 ---
-title: Github와 Jenkins 연동하기
+title: Docker로 웹서버 구축하기
+titleTemplate: Github와 Jenkins 연동하기
 description: Github와 Jenkins를 연동하여 프로젝트를 자동 배포하는 방법을 압아봅시다.
 ---
 

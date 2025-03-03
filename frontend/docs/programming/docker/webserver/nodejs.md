@@ -1,5 +1,6 @@
 ---
-title: Node.js App 컨테이너
+title: Docker로 웹서버 구축하기
+titleTemplate: Node.js App 컨테이너
 description: Docker가 설치된 호스트에 Node.js 이미지를 이용해 컨테이너화 하는 방법을 소개합니다.
 ---
 

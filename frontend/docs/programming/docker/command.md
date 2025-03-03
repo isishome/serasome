@@ -1,5 +1,6 @@
 ---
-title: Docker 명령어
+title: Docker
+titleTemplate: Docker 명령어
 decscription: Docker에서 사용하는 기본적인 명령어 몇가지를 배워봅시다.
 ---
 

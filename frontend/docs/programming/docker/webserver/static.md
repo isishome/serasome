@@ -1,5 +1,6 @@
 ---
-title: 정적 사이트
+title: Docker로 웹서버 구축하기
+titleTemplate: 정적 사이트
 description: Docker가 설치된 호스트에 Node.js 이미지를 이용해 정적 사이트를 배포하는 방법을 소개합니다.
 ---
 

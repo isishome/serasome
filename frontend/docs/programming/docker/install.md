@@ -1,5 +1,6 @@
 ---
-title: Docker 설치하기
+title: Docker
+titleTemplate: Docker 설치하기
 decscription: Docker Desktop을 설치해 봅시다.
 ---
 

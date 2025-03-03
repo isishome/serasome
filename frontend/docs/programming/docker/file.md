@@ -1,5 +1,6 @@
 ---
-title: Dockerfile 작성하기
+title: Docker
+titleTemplate: Dockerfile 작성하기
 decscription: Docker 빌드에 사용할 Dockerfile이 무엇인지 알아보고 간단하게 작성하는 방법까지 알아봅시다.
 ---
 

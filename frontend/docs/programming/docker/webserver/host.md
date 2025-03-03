@@ -1,5 +1,6 @@
 ---
-title: Docker 호스트 준비
+title: Docker로 웹서버 구축하기
+titleTemplate: Docker 호스트 준비
 description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴스를 생성하고 도커를 설치합니다.
 ---
 
@@ -34,7 +35,7 @@ description: AWS(Amazon Web Services)의 Lightsail 제품을 이용해 인스턴
    > 2024년 2월부터 **Amazon**에서 **IPV4 이용에 대한 요금을 책정**하기 시작했습니다.(기존 무료)
 
 5. 크기 선택\
-    저는 **2GB 메모리, 2개의 vCPU 프로세싱, 60GB SSD 스토리지**를 선택했습니다.
+   저는 **2GB 메모리, 2개의 vCPU 프로세싱, 60GB SSD 스토리지**를 선택했습니다.
 
 | ![Amazon Lightsail 인스턴스 생성 화면](./images/host/instance02.webp){:class='image'} |
 | :-----------------------------------------------------------------------------------: |
