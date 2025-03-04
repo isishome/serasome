@@ -22,7 +22,7 @@ import Example2 from './source/reactive/02.vue';
 Vue.js 프레임워크는 반응형으로 시작하여 반응형으로 끝난다고 해도 과언이 아닙니다.\
 그만큼 Vue.js에서 반응형은 가상돔과 더불어 가장 중요한 요소이기도 합니다.
 
-### ref()
+## ref()
 
 Composition API에서 반응형 상태를 선언하는 권장 방법은 `ref()` 함수를 사용하는 것입니다
 
@@ -84,7 +84,7 @@ const increase = () => {
 
 그렇다면 객체나 배열과 같은 `Object` 타입에는 어떤 함수를 사용할까요?
 
-### reactive()
+## reactive()
 
 `reactive()`는 반응 상태를 선언하는 또다른 API 입니다. 내부 값을 특수 객체로 감싸는 `ref()`와 달리 `reactive()`는 객체 자체를 반응형으로 만듭니다.
 
@@ -132,7 +132,17 @@ const state = reactive<State>({ count: 0 })
 보통은 깊은 객체나 배열을 다룰 때 사용합니다. 간단한 구조: 예를 들어 위 예제와 같은 객체의 경우 얕은 참조 API 함수인 `shallowReactive()`를 사용하는 것이 성능에 도움을 줄 수 있습니다.
 :::
 
-### 그 외 반응형 API 함수들
+## 그 외 반응형 API 함수들
+
+반응형 API를 더 이해하고 싶은 경우, 예를 들어 계산된 속성이나 반응형 데이터를 감지하고 특정한 동작을 하고싶은 경우 아래와 같은 API 함수들을 사용할 수도 있습니다.
+
+- computed()
+- readonly()
+- watchEffect()
+- watchPostEffect()
+- watchSyncEffect()
+- watch()
+- onWatcherCleanup()
 
 만약 성능까지 고려한 개발이 필요한 경우 반응형이 필요한 객체나 원시 데이터에 따라(**얕은 데이터 구조**) 아래와 같은 API 함수들을 사용할 수도 있습니다.
 
@@ -150,7 +160,7 @@ const state = reactive<State>({ count: 0 })
 - getCurrentScope()
 - onScopeDispose()
 
-반응형 API에 대한 자세한 설명은 공식 사이트의 [반응형 API: 고급](https://ko.vuejs.org/api/reactivity-advanced.html)를 참고하세요.
+반응형 API에 대한 자세한 설명은 공식 사이트의 [반응형 API: 핵심](https://ko.vuejs.org/api/reactivity-core.html)과 [반응형 API: 고급](https://ko.vuejs.org/api/reactivity-advanced.html)을 참고하세요.
 
 ::: warning 얕은 참조 사용 시 주의사항
 얕은 데이터 구조는 컴포넌트에서 루트 수준 상태로만 사용해야 합니다. 내부 깊숙이까지 반응형으로 동작하는 객체 내부에 중첩하는 경우, 반응형 동작에 일관성이 없는 트리가 생성되어 이해와 디버그가 어려울 수 있으니, 중첩하여 사용하면 안됩니다.
