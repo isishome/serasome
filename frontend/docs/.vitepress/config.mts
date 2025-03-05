@@ -112,7 +112,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: '홈', link: '/' },
-          { text: '프로그래밍', link: '/programming/docker/intro' },
+          { text: '프로그래밍', link: '/programming/vue/start' },
           { text: 'IT 기기', link: '/it/y700/global-rom' }
         ],
         logo: '/images/logo.svg',
@@ -126,8 +126,48 @@ export default defineConfig({
         sidebar: {
           '/programming/': [
             {
+              text: 'Vue.js',
+              items: [
+                {
+                  text: '빠른 시작',
+                  link: '/programming/vue/start'
+                },
+                {
+                  text: '반응형 기초',
+                  link: '/programming/vue/reactive'
+                },
+                {
+                  text: '계산된 속성',
+                  link: '/programming/vue/computed'
+                }
+              ]
+            },
+            // {
+            //   text: 'Vue Router',
+            //   collapsed: false,
+            //   items: [
+            //     { text: '소개', link: '/programming/vue-router/', docFooterText: 'Vue Router 소개' }
+            //   ]
+            // },
+            // {
+            //   text: 'Pinia',
+            //   collapsed: false,
+            //   items: [
+            //     { text: '소개', link: '/programming/pinia/' }
+            //   ]
+            // },
+            {
+              text: 'Quasar Framework',
+              items: [
+                {
+                  text: "Sera's Quasar Framework",
+                  link: 'https://quasar.serasome.com',
+                  docFooterText: "Sera's Quasar Framework"
+                }
+              ]
+            },
+            {
               text: 'Docker',
-              collapsed: true,
               items: [
                 {
                   text: 'Docker란 무엇인가?',
@@ -209,45 +249,7 @@ export default defineConfig({
                 }
               ]
             },
-            {
-              text: 'Vue.js',
-              collapsed: true,
-              items: [
-                {
-                  text: '빠른 시작',
-                  link: '/programming/vue/start'
-                },
-                {
-                  text: '반응형 기초',
-                  link: '/programming/vue/reactive'
-                }
-              ]
-            },
-            // {
-            //   text: 'Vue Router',
-            //   collapsed: false,
-            //   items: [
-            //     { text: '소개', link: '/programming/vue-router/', docFooterText: 'Vue Router 소개' }
-            //   ]
-            // },
-            // {
-            //   text: 'Pinia',
-            //   collapsed: false,
-            //   items: [
-            //     { text: '소개', link: '/programming/pinia/' }
-            //   ]
-            // },
-            {
-              text: 'Quasar Framework',
-              collapsed: false,
-              items: [
-                {
-                  text: "Sera's Quasar Framework",
-                  link: 'https://quasar.serasome.com',
-                  docFooterText: "Sera's Quasar Framework"
-                }
-              ]
-            },
+
             {
               text: 'Lightsail',
               collapsed: false,

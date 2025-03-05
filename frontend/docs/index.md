@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Sera's Special.."
-  text: "Something"
+  text: 'Something'
   tagline: 프로그래밍 & IT & 그밖에 관심 있는 모든 것
   image:
     src: /images/logo_shadow.svg
@@ -12,7 +12,7 @@ hero:
   actions:
     - theme: alt
       text: 프로그래밍
-      link: /programming/docker/intro
+      link: /programming/vue/start
     - theme: alt
       text: IT 기기
       link: /it/y700/global-rom

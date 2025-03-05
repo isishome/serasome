@@ -13,18 +13,19 @@ import Example2 from './source/reactive/02.vue';
 
 ::: info 들어가며
 
-- 반응형 코드는 Composition API 스타일과 정확한 타입체크를 위해 `<script setup lang="ts">` 구문을 활용하여 작성합니다.
+- 예제 코드는 Composition API 스타일과 정확한 타입 체크를 위해 `<script setup lang="ts">` 구문을 활용하여 작성합니다.
 - 함수는 es6의 **화살표 함수**를 사용합니다.
   :::
 
 ## Vue 반응형의 중요성
 
-Vue.js 프레임워크는 반응형으로 시작하여 반응형으로 끝난다고 해도 과언이 아닙니다.\
-그만큼 Vue.js에서 반응형은 가상돔과 더불어 가장 중요한 요소이기도 합니다.
+예전에 `Vue.js`를 활용한 학습 서비스 프로젝트에 참여한 적이 있는데, 그때 함께 투입된 개발자 중 한 명이 반응형 개념을 전혀 이해하지 못한 상태로 참여했다가, 결국 한 달 만에 권고사직되는 일이 있었습니다.\
+`Vue.js` 프레임워크는 **반응형**으로 시작하여 **반응형**으로 끝난다고 해도 과언이 아닙니다.\
+그만큼 `Vue.js`에서 **반응형**은 **가상돔**과 더불어 가장 중요한 요소이기도 합니다.
 
 ## ref()
 
-Composition API에서 반응형 상태를 선언하는 권장 방법은 `ref()` 함수를 사용하는 것입니다
+`Composition API`에서 반응형 상태를 선언하는 권장 방법은 `ref()` 함수를 사용하는 것입니다
 
 ```ts
 import { ref } from 'vue'
@@ -134,14 +135,14 @@ const state = reactive<State>({ count: 0 })
 
 ## 그 외 반응형 API 함수들
 
-반응형 API를 더 이해하고 싶은 경우, 예를 들어 계산된 속성이나 반응형 데이터를 감지하고 특정한 동작을 하고싶은 경우 아래와 같은 API 함수들을 사용할 수도 있습니다.
+반응형 API를 좀 더 깊이 학습하고 싶은 경우, 예를 들어 계산된 속성이나 반응형 데이터를 감지하고 특정한 동작을 하고싶은 경우 아래와 같은 API 함수들을 사용할 수도 있습니다.
 
-- computed()
+- **computed()**
 - readonly()
-- watchEffect()
+- **watchEffect()**
 - watchPostEffect()
 - watchSyncEffect()
-- watch()
+- **watch()**
 - onWatcherCleanup()
 
 만약 성능까지 고려한 개발이 필요한 경우 반응형이 필요한 객체나 원시 데이터에 따라(**얕은 데이터 구조**) 아래와 같은 API 함수들을 사용할 수도 있습니다.
