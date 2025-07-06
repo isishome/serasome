@@ -319,6 +319,7 @@ export default defineConfig({
       copyright: "Copyright © 2025-present SeraSome",
     },
   },
+  cleanUrls: true,
   markdown: {
     image: {
       lazyLoading: true,
