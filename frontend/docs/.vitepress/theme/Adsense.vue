@@ -1,52 +1,67 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
   dataAdClient: {
     type: String,
-    default: 'ca-pub-5110777286519562'
+    default: "ca-pub-5110777286519562",
   },
   dataAdSlot: {
     type: String,
-    default: null
+    default: null,
   },
   dataAdFormat: {
     type: String,
-    default: null
+    default: null,
   },
   dataFullWidthResponsive: {
     type: Boolean,
-    default: null
+    default: null,
   },
   repeat: {
     type: Number,
-    default: 5
-  }
-})
+    default: 5,
+  },
+});
 
-let timer: NodeJS.Timeout
-const repeat = ref(0)
+const prod: boolean = import.meta.env.PROD;
+let timer: NodeJS.Timeout;
+const repeat = ref(0);
 const dataAdtest = computed(() =>
-  import.meta.env.DEV || !!!props.dataAdSlot ? 'on' : null
-)
+  import.meta.env.DEV || !!!props.dataAdSlot ? "on" : null
+);
 
 const render = () => {
-  repeat.value++
-  if (repeat.value > props.repeat) clearTimeout(timer)
-  else if (!!window?.adsbygoogle) (window.adsbygoogle || []).push({})
-  else
-    timer = setTimeout(() => {
-      render()
-    }, 200)
-}
+  repeat.value++;
+  if (repeat.value > props.repeat) clearTimeout(timer);
+  else if (!!window?.adsbygoogle) (window.adsbygoogle || []).push({});
+  else timer = setTimeout(render, 400);
+};
+
+const load = () => {
+  const adURL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${props.dataAdClient}`;
+  const script = document.createElement("script");
+  script.src = adURL;
+
+  script.async = true;
+  script.crossOrigin = "anonymous";
+
+  if (!document.head.querySelector(`script[src="${adURL}"]`)) {
+    script.onload = () => {
+      render();
+    };
+
+    document.head.appendChild(script);
+  } else render();
+};
 
 onMounted(() => {
-  render()
-})
+  if (prod) load();
+});
 
 onUnmounted(() => {
-  clearTimeout(timer)
-})
+  clearTimeout(timer);
+});
 </script>
 
 <template>
@@ -67,12 +82,12 @@ onUnmounted(() => {
   background-color: var(--vp-carbon-ads-bg-color);
 }
 
-.ins[data-ad-status='unfilled'] {
+.ins[data-ad-status="unfilled"] {
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.ins[data-ad-status='unfilled'] {
+.ins[data-ad-status="unfilled"] {
   padding: 0;
   background-color: inherit;
 }
