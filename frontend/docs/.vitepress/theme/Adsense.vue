@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, nextTick } from "vue";
 
 const props = defineProps({
   dataAdClient: {
@@ -12,11 +12,15 @@ const props = defineProps({
   },
   dataAdFormat: {
     type: String,
-    default: null,
+    default: undefined,
+  },
+  dataAdtest: {
+    type: Boolean,
+    default: undefined,
   },
   dataFullWidthResponsive: {
     type: Boolean,
-    default: null,
+    default: undefined,
   },
   repeat: {
     type: Number,
@@ -25,42 +29,24 @@ const props = defineProps({
 });
 
 const prod: boolean = import.meta.env.PROD;
-let timer: NodeJS.Timeout;
-const repeat = ref(0);
-const dataAdtest = computed(() =>
-  import.meta.env.DEV || !!!props.dataAdSlot ? "on" : null
-);
 
-const render = () => {
-  repeat.value++;
-  if (repeat.value > props.repeat) clearTimeout(timer);
-  else if (!!window?.adsbygoogle) (window.adsbygoogle || []).push({});
-  else timer = setTimeout(render, 400);
+const pushAdsense = () => {
+  (window.adsbygoogle = window.adsbygoogle || []).push({});
 };
 
-const load = () => {
-  const adURL = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${props.dataAdClient}`;
-  const script = document.createElement("script");
-  script.src = adURL;
-
-  script.async = true;
-  script.crossOrigin = "anonymous";
-
-  if (!document.head.querySelector(`script[src="${adURL}"]`)) {
-    script.onload = () => {
-      render();
-    };
-
-    document.head.appendChild(script);
-  } else render();
+const render = () => {
+  void nextTick(() => {
+    if (window.adsenseLoaded) pushAdsense();
+    else window.addEventListener("adsense-loaded", pushAdsense);
+  });
 };
 
 onMounted(() => {
-  if (prod) load();
+  if (prod) render();
 });
 
 onUnmounted(() => {
-  clearTimeout(timer);
+  window.removeEventListener("adsense-loaded", pushAdsense);
 });
 </script>
 
@@ -69,7 +55,7 @@ onUnmounted(() => {
     class="adsbygoogle ins"
     :data-ad-client="dataAdClient"
     :data-ad-slot="dataAdSlot"
-    :data-adtest="dataAdtest"
+    :data-adtest="dataAdtest ? 'on' : null"
     :data-ad-format="dataAdFormat"
     :data-full-width-responsive="dataFullWidthResponsive"
   ></ins>

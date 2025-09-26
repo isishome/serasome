@@ -59,6 +59,16 @@ if (prod) {
       function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', 'G-CYSQREKHK7');`,
+    ],
+    [
+      "script",
+      {
+        async: "",
+        src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5110777286519562",
+        crossorigin: "anonymous",
+        onload:
+          "window.adsenseLoaded = true; window.dispatchEvent(new Event('adsense-loaded'))",
+      },
     ]
   );
 }
