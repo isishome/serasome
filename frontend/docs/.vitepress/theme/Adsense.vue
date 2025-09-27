@@ -19,7 +19,7 @@ const props = defineProps({
     default: undefined,
   },
   dataFullWidthResponsive: {
-    type: Boolean,
+    type: String,
     default: undefined,
   },
   repeat: {

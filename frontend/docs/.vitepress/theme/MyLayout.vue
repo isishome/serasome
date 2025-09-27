@@ -39,38 +39,44 @@ watch([size, routeName], ([valSize, valName], [oldSize, oldName]) => {
   <Layout>
     <template #doc-before>
       <div class="flex-center">
-        <Adsense
-          justify="center"
-          :style="`display:inline-block;${size}`"
-          data-ad-slot="7595465749"
-          :data-adtest="!prod"
-          :key="`top-${topAdKey}`"
-        />
+        <ClientOnly>
+          <Adsense
+            justify="center"
+            :style="`display:inline-block;${size}`"
+            data-ad-slot="7595465749"
+            :data-adtest="!prod"
+            :key="`top-${topAdKey}`"
+          />
+        </ClientOnly>
       </div>
     </template>
     <template #aside-ads-before>
       <div class="flex-right">
-        <Adsense
-          v-if="width >= 1280"
-          style="display: inline-block; width: 160px; height: 600px"
-          data-ad-slot="7901796235"
-          :data-adtest="!prod"
-          :key="`right-${rightAdKey}`"
-        />
+        <ClientOnly>
+          <Adsense
+            v-if="width >= 1280"
+            style="display: inline-block; width: 160px; height: 600px"
+            data-ad-slot="7901796235"
+            :data-adtest="!prod"
+            :key="`right-${rightAdKey}`"
+          />
+        </ClientOnly>
       </div>
     </template>
     <template #doc-after>
       <div class="flex-center" style="margin-top: 16px">
-        <Adsense
-          v-if="width < 1280"
-          justify="center"
-          style="display: block"
-          data-ad-slot="2989257893"
-          :data-adtest="!prod"
-          data-ad-format="auto"
-          :data-full-width-responsive="true"
-          :key="`bottom-${bottomAdKey}`"
-        />
+        <ClientOnly>
+          <Adsense
+            v-if="width < 1280"
+            justify="center"
+            style="display: block; width: 100%"
+            data-ad-slot="2989257893"
+            :data-adtest="!prod"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+            :key="`bottom-${bottomAdKey}`"
+          />
+        </ClientOnly>
       </div>
     </template>
   </Layout>
