@@ -15,10 +15,8 @@ const bottomAdKey = ref<number>(0);
 const rightAdKey = ref<number>(0);
 
 const size = computed(() =>
-  width.value < 320
-    ? "width:300px;max-height:50px;"
-    : width.value < 468
-    ? "width:300px;max-height:100px;"
+  width.value < 468
+    ? "width:320px;max-height:100px;"
     : width.value < 728
     ? "width:468px;height:60px;"
     : "width:728px;height:90px;"
@@ -69,7 +67,12 @@ watch([size, routeName], ([valSize, valName], [oldSize, oldName]) => {
           <Adsense
             v-if="width < 1280"
             justify="center"
-            style="display: block; width: 100%"
+            style="
+              display: block;
+              width: 100%;
+              max-width: 100%;
+              overflow: hidden;
+            "
             data-ad-slot="2989257893"
             :data-adtest="!prod"
             data-ad-format="auto"
