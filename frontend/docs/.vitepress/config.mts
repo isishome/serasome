@@ -159,6 +159,27 @@ export default defineConfig({
             //   ]
             // },
             {
+              text: "Claude Code",
+              items: [
+                {
+                  text: "Claude Code 하네스 도입기",
+                  link: "/programming/claude-code/harness",
+                },
+                {
+                  text: "Claude Code 시작하기",
+                  link: "/programming/claude-code/getting-started",
+                },
+                {
+                  text: "Claude Code MCP 연동하기",
+                  link: "/programming/claude-code/mcp-integration",
+                },
+                {
+                  text: "Claude Code 멀티 에이전트 구성 및 실전 활용법",
+                  link: "/programming/claude-code/multi-agent",
+                },
+              ],
+            },
+            {
               text: "Quasar Framework",
               items: [
                 {

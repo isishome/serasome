@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" height="360" font-family="'Noto Sans KR', sans-serif">
+  <rect x="0" y="0" width="800" height="360" fill="#0d1117" />
+
+  <!-- CLAUDE.md box -->
+  <rect x="40" y="40" width="220" height="100" rx="10" fill="#1f6feb" />
+  <text x="150" y="80" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">.claude/CLAUDE.md</text>
+  <text x="150" y="108" fill="#dbeafe" font-size="14" text-anchor="middle">고정 컨텍스트(하네스)</text>
+
+  <!-- Arrow down -->
+  <line x1="150" y1="140" x2="150" y2="190" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Claude Code Agent box -->
+  <rect x="40" y="190" width="220" height="100" rx="10" fill="#238636" />
+  <text x="150" y="230" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">Claude Code</text>
+  <text x="150" y="258" fill="#d2f8d2" font-size="14" text-anchor="middle">에이전트</text>
+
+  <!-- Arrow right -->
+  <line x1="260" y1="240" x2="440" y2="240" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Output box -->
+  <rect x="440" y="60" width="320" height="80" rx="10" fill="#30363d" stroke="#8b949e" />
+  <text x="600" y="92" fill="#ffffff" font-size="16" font-weight="700" text-anchor="middle">일관된 frontmatter / 어조</text>
+  <text x="600" y="118" fill="#c9d1d9" font-size="14" text-anchor="middle">title, titleTemplate, description</text>
+
+  <rect x="440" y="160" width="320" height="80" rx="10" fill="#30363d" stroke="#8b949e" />
+  <text x="600" y="192" fill="#ffffff" font-size="16" font-weight="700" text-anchor="middle">이미지 캡션 표 형식</text>
+  <text x="600" y="218" fill="#c9d1d9" font-size="14" text-anchor="middle">출처 캡션 포함</text>
+
+  <rect x="440" y="260" width="320" height="80" rx="10" fill="#30363d" stroke="#8b949e" />
+  <text x="600" y="292" fill="#ffffff" font-size="16" font-weight="700" text-anchor="middle">config.mts 사이드바 자동 등록</text>
+  <text x="600" y="318" fill="#c9d1d9" font-size="14" text-anchor="middle">+ 빌드 검증 후 승인 대기</text>
+
+  <!-- connecting lines to outputs -->
+  <line x1="440" y1="240" x2="440" y2="100" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="440" y1="240" x2="440" y2="200" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="440" y1="240" x2="440" y2="300" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e" />
+    </marker>
+  </defs>
+</svg>

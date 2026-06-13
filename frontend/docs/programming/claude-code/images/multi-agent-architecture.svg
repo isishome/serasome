@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" font-family="'Noto Sans KR', sans-serif">
+  <rect x="0" y="0" width="800" height="420" fill="#0d1117" />
+
+  <!-- Orchestrator box -->
+  <rect x="290" y="30" width="220" height="90" rx="10" fill="#1f6feb" />
+  <text x="400" y="68" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">오케스트레이터</text>
+  <text x="400" y="94" fill="#dbeafe" font-size="14" text-anchor="middle">작업 분배 / 결과 취합</text>
+
+  <!-- Arrows down to sub-agents -->
+  <line x1="400" y1="120" x2="150" y2="190" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="400" y1="120" x2="400" y2="190" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="400" y1="120" x2="650" y2="190" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Sub-agent boxes -->
+  <rect x="40" y="190" width="220" height="90" rx="10" fill="#238636" />
+  <text x="150" y="228" fill="#ffffff" font-size="18" font-weight="700" text-anchor="middle">서브 에이전트 A</text>
+  <text x="150" y="254" fill="#d2f8d2" font-size="13" text-anchor="middle">FE 작업</text>
+
+  <rect x="290" y="190" width="220" height="90" rx="10" fill="#238636" />
+  <text x="400" y="228" fill="#ffffff" font-size="18" font-weight="700" text-anchor="middle">서브 에이전트 B</text>
+  <text x="400" y="254" fill="#d2f8d2" font-size="13" text-anchor="middle">BE 작업</text>
+
+  <rect x="540" y="190" width="220" height="90" rx="10" fill="#238636" />
+  <text x="650" y="228" fill="#ffffff" font-size="18" font-weight="700" text-anchor="middle">서브 에이전트 C</text>
+  <text x="650" y="254" fill="#d2f8d2" font-size="13" text-anchor="middle">Reviewer</text>
+
+  <!-- Arrows down to communication layer -->
+  <line x1="150" y1="280" x2="150" y2="330" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="400" y1="280" x2="400" y2="330" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="650" y1="280" x2="650" y2="330" stroke="#8b949e" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Communication layer -->
+  <rect x="40" y="330" width="720" height="60" rx="10" fill="#30363d" stroke="#8b949e" />
+  <text x="400" y="367" fill="#c9d1d9" font-size="15" text-anchor="middle">파일 / 파이프 / 공유 상태 파일을 통한 결과 공유</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e" />
+    </marker>
+  </defs>
+</svg>
