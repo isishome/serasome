@@ -125,6 +125,12 @@ claude mcp add slack \
   -- npx -y @modelcontextprotocol/server-slack
 ```
 
+Windows PowerShell에서는 줄바꿈 없이 한 줄로 입력해야 합니다.
+
+```powershell
+claude mcp add slack -e SLACK_BOT_TOKEN=xoxb_여기에_토큰_입력 -e SLACK_TEAM_ID=T여기에_팀ID_입력 -- npx -y @modelcontextprotocol/server-slack
+```
+
 팀 ID는 Slack 워크스페이스 URL(`https://app.slack.com/client/T여기가팀ID/...`)에서 확인할 수 있습니다.
 
 ### 사용 예시
@@ -149,6 +155,12 @@ PostgreSQL 접속 정보가 필요합니다. 로컬 개발 DB나 읽기 전용 �
 claude mcp add postgres \
   -- npx -y @modelcontextprotocol/server-postgres \
   "postgresql://사용자명:비밀번호@호스트:5432/데이터베이스명"
+```
+
+Windows PowerShell에서는 줄바꿈 없이 한 줄로 입력해야 합니다.
+
+```powershell
+claude mcp add postgres -- npx -y @modelcontextprotocol/server-postgres "postgresql://사용자명:비밀번호@호스트:5432/데이터베이스명"
 ```
 
 ### 사용 예시
@@ -176,14 +188,20 @@ claude mcp add filesystem \
   /Users/나의사용자명/projects
 ```
 
+Windows PowerShell에서는 줄바꿈 없이 한 줄로, 경로도 Windows 형식으로 입력합니다.
+
+```powershell
+claude mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem C:\Users\나의사용자명\Documents C:\Users\나의사용자명\projects
+```
+
 여러 경로를 공백으로 구분해 나열하면 해당 경로들만 접근이 허용됩니다.
 
 ### 사용 예시
 
 ```
-> ~/Documents/회의록 폴더에서 이번 달 파일들 요약해줘
+> C:\Users\나의사용자명\Documents\회의록 폴더에서 이번 달 파일들 요약해줘
 
-> ~/projects/my-app 안에 TODO로 주석 달린 코드 전부 찾아줘
+> C:\Users\나의사용자명\projects\my-app 안에 TODO로 주석 달린 코드 전부 찾아줘
 ```
 
 ## 설정 파일로 한 번에 관리하기
