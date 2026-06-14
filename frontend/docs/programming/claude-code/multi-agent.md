@@ -37,35 +37,35 @@ description: Claude Code를 여러 인스턴스로 병렬 실행하는 멀티 �
 
 ### 1. `claude --print` + Shell 병렬 실행
 
-가장 간단하고 직관적인 방식입니다. `claude --print`(또는 `claude -p`)로 단일 쿼리를 stdout으로 받아오고, 셸의 백그라운드 실행(`&`)과 `wait`을 조합해 여러 인스턴스를 동시에 띄웁니다.
+가장 간단하고 직관적인 방식입니다. `claude --print`(또는 `claude -p`)로 단일 쿼리를 stdout으로 받아오고, PowerShell의 `Start-Job`과 `Wait-Job`을 조합해 여러 인스턴스를 동시에 띄웁니다.
 
-```bash{3,4,5,7}
-#!/bin/bash
+```powershell{2,3,4,6}
 # 세 개의 모듈을 동시에 리뷰
-claude --print "src/auth 모듈의 보안 취약점을 검토해줘" > review-auth.md &
-claude --print "src/payment 모듈의 보안 취약점을 검토해줘" > review-payment.md &
-claude --print "src/user 모듈의 보안 취약점을 검토해줘" > review-user.md &
+Start-Job { claude --print "src/auth 모듈의 보안 취약점을 검토해줘" | Out-File review-auth.md }
+Start-Job { claude --print "src/payment 모듈의 보안 취약점을 검토해줘" | Out-File review-payment.md }
+Start-Job { claude --print "src/user 모듈의 보안 취약점을 검토해줘" | Out-File review-user.md }
 
-wait
-echo "모든 리뷰 완료"
+Get-Job | Wait-Job
+Write-Output "모든 리뷰 완료"
 ```
 
-각 프로세스는 완전히 독립된 컨텍스트를 가지므로 서로 간섭하지 않고, `wait`이 끝나면 결과 파일 3개가 동시에 준비됩니다. 별도의 설정 없이 바로 시도해볼 수 있다는 점이 가장 큰 장점이었습니다.
+각 작업(Job)은 완전히 독립된 컨텍스트를 가지므로 서로 간섭하지 않고, `Wait-Job`이 끝나면 결과 파일 3개가 동시에 준비됩니다. 별도의 설정 없이 바로 시도해볼 수 있다는 점이 가장 큰 장점이었습니다.
 
 ### 2. `-p` (Prompt) 플래그를 활용한 동적 오케스트레이터
 
 두 번째 방식은 오케스트레이터 역할의 Claude가 직접 작업을 쪼개고, 그 결과를 다시 `-p` 플래그로 서브 에이전트에게 넘기는 방식입니다. 즉, 오케스트레이터의 출력이 서브 에이전트의 입력 프롬프트가 됩니다.
 
-```bash{2,3,7,8}
-# 1단계: 오케스트레이터가 작업 목록을 JSON으로 분해
-TASKS=$(claude --print "다음 디렉터리 목록 중 리팩토링이 필요한 파일을 찾아 \
-  파일별 작업 지시를 한 줄씩 출력해줘: src/components/")
+```powershell{2,5,6,7,9}
+# 1단계: 오케스트레이터가 작업 목록을 줄 단위로 분해
+$tasks = claude --print "다음 디렉터리 목록 중 리팩토링이 필요한 파일을 찾아 파일별 작업 지시를 한 줄씩 출력해줘: src/components/"
 
 # 2단계: 분해된 작업을 한 줄씩 서브 에이전트에게 전달
-echo "$TASKS" | while IFS= read -r task; do
-  claude --print -p "$task" >> refactor-results.md &
-done
-wait
+foreach ($task in ($tasks -split "`n" | Where-Object { $_.Trim() })) {
+  Start-Job -ArgumentList $task {
+    param($t) claude --print $t | Out-File -Append refactor-results.md
+  }
+}
+Get-Job | Wait-Job
 ```
 
 이 방식은 작업 목록을 사람이 미리 정의하지 않아도, 오케스트레이터가 그 시점의 코드 상태를 보고 동적으로 작업을 나눠준다는 점이 매력적이었습니다. 다만 오케스트레이터의 출력 형식이 흔들리면 후속 파이프라인이 깨질 수 있어서, "파일별로 정확히 한 줄씩, 다른 설명은 출력하지 말 것"처럼 출력 형식을 엄격하게 지시하는 것이 중요했습니다.
@@ -85,11 +85,11 @@ project/
     └── CLAUDE.md             # 리뷰어 에이전트 페르소나: 보안/성능 체크리스트
 ```
 
-```bash{2,3}
+```powershell{2,3,4}
 # 각 서브 에이전트를 해당 디렉터리에서 실행 → 그 디렉터리의 CLAUDE.md를 자동으로 적용
-(cd frontend && claude --print "로그인 폼 컴포넌트를 작성해줘") > fe-result.md &
-(cd backend && claude --print "로그인 API 엔드포인트를 작성해줘") > be-result.md &
-wait
+Start-Job { Set-Location "$using:PWD/frontend"; claude --print "로그인 폼 컴포넌트를 작성해줘" | Out-File "$using:PWD/fe-result.md" }
+Start-Job { Set-Location "$using:PWD/backend"; claude --print "로그인 API 엔드포인트를 작성해줘" | Out-File "$using:PWD/be-result.md" }
+Get-Job | Wait-Job
 ```
 
 이렇게 하면 매번 프롬프트에 "너는 프론트엔드 담당이고 Vue 컨벤션을 따라야 해"처럼 역할을 설명할 필요가 없어집니다. 디렉터리 자체가 곧 역할이 되는 구조라서, 팀 규모가 커져도 일관성을 유지하기 좋았습니다.
@@ -100,51 +100,49 @@ wait
 
 수십 개의 모듈을 가진 프로젝트에서 보안 리뷰를 한 세션으로 진행하면 컨텍스트가 금방 가득 찹니다. 모듈별로 서브 에이전트를 띄워 동시에 리뷰하고, 오케스트레이터가 결과를 취합하는 방식이 훨씬 효율적이었습니다.
 
-```bash{2,3,4,5,8}
+```powershell{2,3,4,5,6,9,12}
 # 1단계: 모듈 목록을 가져와 모듈별 서브 에이전트 실행
-for dir in src/modules/*/; do
-  name=$(basename "$dir")
-  claude --print "$dir 디렉터리의 코드를 OWASP Top 10 기준으로 검토하고, \
-    발견된 취약점을 마크다운 표로 출력해줘" > "review-${name}.md" &
-done
-wait
+Get-ChildItem src/modules -Directory | ForEach-Object {
+  $name = $_.Name
+  Start-Job -ArgumentList $_.FullName, $name {
+    param($dir, $name)
+    claude --print "$dir 디렉터리의 코드를 OWASP Top 10 기준으로 검토하고, 발견된 취약점을 마크다운 표로 출력해줘" | Out-File "review-$name.md"
+  }
+}
+Get-Job | Wait-Job
 
 # 2단계: 오케스트레이터가 개별 리뷰 결과를 종합
-cat review-*.md | claude --print "다음 리뷰 결과들을 취합해서 \
-  심각도별로 정리한 종합 보안 리포트를 작성해줘" > security-report.md
+Get-Content review-*.md | claude --print "다음 리뷰 결과들을 취합해서 심각도별로 정리한 종합 보안 리포트를 작성해줘" | Out-File security-report.md
 ```
 
 ### 시나리오 2: FE/BE 동시 개발 후 통합 검증 자동화
 
 프론트엔드와 백엔드를 같은 기능 단위로 동시에 개발하고, 마지막에 오케스트레이터가 두 결과물의 인터페이스(API 스펙)가 맞는지 검증하는 흐름입니다.
 
-```bash{2,3,6}
+```powershell{2,3,4,7}
 # 1단계: FE/BE 서브 에이전트를 각자 디렉터리에서 동시 실행
-(cd frontend && claude --print "사용자 프로필 수정 화면을 구현해줘") > fe-done.md &
-(cd backend && claude --print "사용자 프로필 수정 API를 구현해줘") > be-done.md &
-wait
+Start-Job { Set-Location "$using:PWD/frontend"; claude --print "사용자 프로필 수정 화면을 구현해줘" | Out-File "$using:PWD/fe-done.md" }
+Start-Job { Set-Location "$using:PWD/backend"; claude --print "사용자 프로필 수정 API를 구현해줘" | Out-File "$using:PWD/be-done.md" }
+Get-Job | Wait-Job
 
 # 2단계: 오케스트레이터가 두 작업물의 API 계약 일치 여부 검증
-claude --print "frontend/src/api/profile.ts와 backend/src/routes/profile.ts를 \
-  비교해서 요청/응답 형식이 일치하는지 검증하고, 불일치하면 수정해줘"
+claude --print "frontend/src/api/profile.ts와 backend/src/routes/profile.ts를 비교해서 요청/응답 형식이 일치하는지 검증하고, 불일치하면 수정해줘"
 ```
 
 ### 시나리오 3: 작성자(Writer) - 검토자(Reviewer) 교차 검증 패턴
 
 같은 에이전트가 코드를 작성하고 스스로 검토하면 자신의 실수를 잘 못 잡아내는 경향이 있었습니다. 그래서 작성자 역할과 검토자 역할을 완전히 분리된 세션으로 나누고, 서로의 결과물을 주고받게 했습니다.
 
-```bash{2,5,8}
+```powershell{2,5,9}
 # 1단계: 작성자 에이전트가 기능을 구현
-claude --print "장바구니에 수량 변경 기능을 추가해줘. \
-  변경한 파일 목록과 변경 이유를 마지막에 요약해줘" > writer-output.md
+claude --print "장바구니에 수량 변경 기능을 추가해줘. 변경한 파일 목록과 변경 이유를 마지막에 요약해줘" | Out-File writer-output.md
 
 # 2단계: 검토자 에이전트가 작성자의 결과물을 비판적으로 검토
-claude --print "$(cat writer-output.md)
-위 작업 내용을 바탕으로 변경된 파일을 직접 열어 코드 리뷰를 진행하고, \
-문제가 있다면 구체적으로 지적해줘" > reviewer-output.md
+claude --print "$(Get-Content writer-output.md -Raw)
+위 작업 내용을 바탕으로 변경된 파일을 직접 열어 코드 리뷰를 진행하고, 문제가 있다면 구체적으로 지적해줘" | Out-File reviewer-output.md
 
 # 3단계: 작성자 에이전트가 검토 의견을 반영해 재작업
-claude --print "$(cat reviewer-output.md)
+claude --print "$(Get-Content reviewer-output.md -Raw)
 위 리뷰 의견을 반영해서 코드를 수정해줘"
 ```
 
@@ -158,13 +156,12 @@ claude --print "$(cat reviewer-output.md)
 
 가장 단순하고 디버깅하기 쉬운 방식입니다. 각 에이전트가 결과를 파일로 남기고, 다음 에이전트가 그 파일을 읽습니다.
 
-```bash{2,5,6}
+```powershell{2,5}
 # 서브 에이전트 A: 결과를 파일로 저장
-claude --print "API 명세를 분석해서 변경 사항을 정리해줘" > changes.md
+claude --print "API 명세를 분석해서 변경 사항을 정리해줘" | Out-File changes.md
 
 # 서브 에이전트 B: 파일을 읽어 후속 작업 수행
-claude --print "changes.md 파일 내용을 참고해서 \
-  프론트엔드 타입 정의를 업데이트해줘"
+claude --print "changes.md 파일 내용을 참고해서 프론트엔드 타입 정의를 업데이트해줘"
 ```
 
 결과가 파일로 남기 때문에 중간 산출물을 사람이 직접 검토하거나, 문제가 생겼을 때 어느 단계에서 잘못됐는지 추적하기 쉽습니다. 다만 파일 I/O가 늘어나고, 동시에 여러 에이전트가 같은 파일을 쓰면 충돌이 발생할 수 있습니다.
@@ -173,10 +170,9 @@ claude --print "changes.md 파일 내용을 참고해서 \
 
 중간 산출물을 파일로 남기지 않고, 한 에이전트의 출력을 곧바로 다음 에이전트의 입력으로 흘려보내는 방식입니다.
 
-```bash{1,2,3}
-claude --print "이번 주 변경된 커밋 목록을 분석해서 \
-  릴리즈 노트 초안을 작성해줘" \
-  | claude --print "다음 내용을 더 친근한 어조로 다시 작성해줘:"
+```powershell{1,2}
+claude --print "이번 주 변경된 커밋 목록을 분석해서 릴리즈 노트 초안을 작성해줘" |
+  claude --print "다음 내용을 더 친근한 어조로 다시 작성해줘:"
 ```
 
 중간 파일이 남지 않아 깔끔하지만, 중간 단계의 결과를 검토하기 어렵고, 두 번째 에이전트가 첫 번째 에이전트의 출력 형식에 그대로 의존하게 되어 형식이 흔들리면 전체 파이프라인이 깨지기 쉬웠습니다. 짧고 단순한 변환 작업에는 적합했지만, 중요한 의사결정이 끼는 작업에는 파일 기반을 더 선호하게 되었습니다.
@@ -185,7 +181,7 @@ claude --print "이번 주 변경된 커밋 목록을 분석해서 \
 
 여러 에이전트가 동시에 작업하면서 "현재 전체 작업이 어디까지 진행됐는지"를 공유해야 할 때 사용했습니다. JSON이나 마크다운 체크리스트 형태의 상태 파일을 두고, 각 에이전트가 자신이 맡은 항목만 갱신합니다.
 
-```bash{2,3,4,5,6,7,8,9,10,11,15,16}
+```powershell{2,3,4,5,6,7,8,9,10,11,15}
 # state.json
 # {
 #   "tasks": [
@@ -196,13 +192,11 @@ claude --print "이번 주 변경된 커밋 목록을 분석해서 \
 # }
 
 # 서브 에이전트는 자신이 맡은 task만 처리하고 상태를 갱신
-claude --print "state.json에서 owner가 frontend이고 status가 todo인 \
-  task를 처리한 뒤, 해당 항목의 status를 done으로 갱신해줘"
+claude --print "state.json에서 owner가 frontend이고 status가 todo인 task를 처리한 뒤, 해당 항목의 status를 done으로 갱신해줘"
 
 # 오케스트레이터는 주기적으로 state.json을 확인해 모든 task가
 # done이 되면 다음 단계(통합 테스트)를 트리거
-claude --print "state.json의 모든 task status를 확인하고, \
-  전부 done이면 통합 테스트를 진행해줘"
+claude --print "state.json의 모든 task status를 확인하고, 전부 done이면 통합 테스트를 진행해줘"
 ```
 
 이 패턴은 진행 상황을 한눈에 파악할 수 있다는 장점이 있지만, 상태 파일에 대한 동시 쓰기를 막아야 한다는 점을 항상 염두에 둬야 했습니다.
