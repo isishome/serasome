@@ -17,8 +17,11 @@
 게시물 생성 시 반드시 `docs/.vitepress/config.mts`를 읽고, 해당 카테고리의 `items` 배열에 다음 형태로 사이드바를 수동 등록할 것:
 
 ```ts
-{ text: '제목', link: '/경로/' }
+{ text: '제목', link: '/programming/docker/intro' }
 ```
+
+- `link`는 `docs/` 기준 파일 경로에서 `.md`를 뺀 형태로 쓰고 끝에 `/`를 붙이지 않는다(`cleanUrls: true`). 끝 `/`는 `경로/index.md`를 찾아 404가 된다.
+- 새 분류 디렉터리를 만들거나 분류의 첫 문서가 바뀌면 CloudFront Function(viewer request)의 `CATEGORY_FIRST_PAGES`도 함께 고친다.
 
 ## 3. 게시물 스타일 가이드
 
